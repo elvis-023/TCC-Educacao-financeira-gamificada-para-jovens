@@ -2,11 +2,13 @@ import { ArrowLeft, CircleCheck } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router';
 import { toast } from 'sonner';
+import { AvisoSemInternet } from '@/components/AvisoSemInternet';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useLicoes, useTrilhas } from '@/hooks/dados/useConteudo';
 import { useConcluirLeitura, useProgressos } from '@/hooks/dados/useProgresso';
+import { useTrilhaIndisponivel } from '@/hooks/useConexao';
 import { estadoDaLicao } from '@/regras/progresso';
 import { NaoEncontrada } from '@/pages/NaoEncontrada';
 import { MENSAGEM_BLOQUEIO } from './Trilha';
@@ -21,6 +23,7 @@ export function Licao() {
   const titulo = useRef<HTMLHeadingElement>(null);
 
   const trilha = trilhas.data?.find((t) => t.slug === slug);
+  const semInternet = useTrilhaIndisponivel(trilha?.id);
   const daTrilha = (licoes.data ?? []).filter((l) => l.trilhaId === trilha?.id).sort((a, b) => a.ordem - b.ordem);
   const licao = daTrilha.find((l) => String(l.ordem) === ordemTexto);
   const estado = licao ? estadoDaLicao(licao, daTrilha, progressos.data ?? []) : null;
@@ -44,6 +47,7 @@ export function Licao() {
     );
   }
   if (!trilha || !licao) return <NaoEncontrada />;
+  if (semInternet) return <AvisoSemInternet voltarPara={`/trilhas`} />;
   // Regra 6 (PRD 4.4): lição bloqueada aberta pela URL volta para a trilha.
   if (estado === 'bloqueada') return <Navigate to={`/trilhas/${trilha.slug}`} replace />;
 

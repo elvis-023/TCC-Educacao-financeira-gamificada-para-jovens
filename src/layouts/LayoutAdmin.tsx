@@ -1,8 +1,13 @@
 import { Menu } from 'lucide-react';
-import { NavLink, Outlet, useNavigate } from 'react-router';
+import { NavLink, Outlet, useMatches, useNavigate } from 'react-router';
 import { marcarSaidaDoAdmin } from '@/app/saidaDoAdmin';
+import { AvisoRelogioSimulado } from '@/components/AvisoRelogioSimulado';
+import { FerramentasDemonstracao } from '@/components/FerramentasDemonstracao';
+import { SeloDados } from '@/components/SeloDados';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { MODO_DADOS, repositorios } from '@/dados/repositorios';
+import { useFocoNoTitulo } from '@/hooks/useFocoNoTitulo';
 import { useSair } from '@/hooks/useSair';
 import { useAtualizarSessao } from '@/hooks/useSessao';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -31,6 +36,7 @@ function MenuAdmin() {
   return (
     <div className="flex h-full flex-col gap-4 p-4">
       <p className="font-semibold">Educação Financeira Gamificada</p>
+      <div className="hidden lg:block"><AvisoRelogioSimulado /></div>
       <nav aria-label="Menu do administrador" className="flex flex-col gap-1">
         {itens.map((item) => (
           <NavLink
@@ -49,7 +55,18 @@ function MenuAdmin() {
         ))}
       </nav>
       <div className="mt-auto flex flex-col gap-2">
-        <Button variant="outline">Ferramentas de demonstração</Button>
+        {MODO_DADOS === 'local' && (
+          <Dialog>
+            <DialogTrigger asChild><Button variant="outline">Ferramentas de demonstração</Button></DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Ferramentas de demonstração</DialogTitle>
+                <DialogDescription className="sr-only">Atalhos para a apresentação do TCC</DialogDescription>
+              </DialogHeader>
+              <FerramentasDemonstracao papel="admin" />
+            </DialogContent>
+          </Dialog>
+        )}
         {MODO_DADOS === 'local' && <Button variant="outline" onClick={voltarAoApp}>Voltar ao app</Button>}
         <Button variant="ghost" onClick={sair}>Sair</Button>
       </div>
@@ -58,6 +75,8 @@ function MenuAdmin() {
 }
 
 export function LayoutAdmin() {
+  useFocoNoTitulo();
+  const titulo = ((useMatches().at(-1)?.handle ?? {}) as { titulo?: string }).titulo;
   return (
     <div className="min-h-dvh lg:flex">
       <aside className="fixed inset-y-0 left-0 hidden w-60 border-r bg-background lg:block">
@@ -80,8 +99,13 @@ export function LayoutAdmin() {
             </SheetContent>
           </Sheet>
           <span className="font-semibold">Administrador</span>
+          <AvisoRelogioSimulado />
         </header>
-        <main id="conteudo" className="mx-auto w-full max-w-[1200px] p-4">
+        <main id="conteudo" className="mx-auto w-full max-w-[1200px] space-y-4 p-4">
+          <header className="flex flex-wrap items-center gap-3">
+            <h1 className="text-2xl font-semibold">{titulo}</h1>
+            <SeloDados variante="admin" />
+          </header>
           <Outlet />
         </main>
       </div>

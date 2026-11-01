@@ -2,6 +2,7 @@ import type {
   Notificacao, ParametroSistema, Progresso, Questao, RespostaQuiz, RespostaTeste, Simulacao, TesteDiagnostico, Usuario, UsuarioBadge,
 } from '@/dados/tipos';
 import { criarDadosDemo, VERSAO_DADOS } from '@/dados/demo';
+import { atualizarAparelho } from '@/dados/aparelho';
 import { agora } from '@/lib/relogio';
 
 const CHAVE = 'efg:dados';
@@ -44,6 +45,7 @@ export function carregarBanco(): BancoDados {
   }
   const novo = criarDadosDemo(agora());
   gravar(novo);
+  atualizarAparelho({ trilhasBaixadas: ['juros-compostos'] }); // PRD 6.4: Juros Compostos já vem baixada
   return novo;
 }
 
@@ -57,6 +59,7 @@ export function alterarBanco<T>(alteracao: (banco: BancoDados) => T): T {
 
 export function reiniciarBanco(): void {
   gravar(criarDadosDemo(agora()));
+  atualizarAparelho({ trilhasBaixadas: ['juros-compostos'] });
 }
 
 export function armazenamentoOk(): boolean {

@@ -1,12 +1,16 @@
 import { Flame } from 'lucide-react';
+import { useState } from 'react';
 import { Link, Navigate, useLocation, useParams } from 'react-router';
 import { Celebracao } from '@/components/Celebracao';
 import { EtiquetaNivel } from '@/components/EtiquetaNivel';
+import { IconeConquista } from '@/components/IconeConquista';
+import { ModalConquista } from '@/components/ModalConquista';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import type { ResultadoResposta } from '@/dados/tipos';
-import { useLicoes, useTrilhas } from '@/hooks/dados/useConteudo';
+import { useConquistas } from '@/hooks/dados/useConquistas';
+import { useBadges, useLicoes, useTrilhas } from '@/hooks/dados/useConteudo';
 import { useMinhasRespostas, useProgressos } from '@/hooks/dados/useProgresso';
 import { useMeuUsuario } from '@/hooks/dados/useUsuario';
 import { diaNoFuso } from '@/lib/fuso';
@@ -20,6 +24,10 @@ import { NaoEncontrada } from '@/pages/NaoEncontrada';
 export function ResultadoQuiz() {
   const { trilha: slug, licao: ordemTexto } = useParams();
   const { state } = useLocation() as { state: { resultado?: ResultadoResposta } | null };
+  const badges = useBadges();
+  const conquistas = useConquistas();
+  const [modalAberto, setModalAberto] = useState(true);
+  const novas = state?.resultado?.conquistasNovas ?? [];
   const trilhas = useTrilhas();
   const licoes = useLicoes();
   const progressos = useProgressos();
@@ -78,6 +86,26 @@ export function ResultadoQuiz() {
       </Card>
 
       {trilhaConcluida && <Celebracao titulo="Trilha concluída!" texto={`Você terminou ${trilha.titulo}.`} />}
+
+      {novas.length > 0 && (
+        <>
+          <Card className="border-xp-icone/50 bg-xp-icone/10">
+            <CardContent className="space-y-2 pt-6">
+              <p className="font-semibold">{novas.length === 1 ? 'Conquista nova' : 'Conquistas novas'}</p>
+              <ul className="space-y-2">
+                {(badges.data ?? []).filter((b) => novas.includes(b.id)).map((b) => (
+                  <li key={b.id} className="flex items-center gap-2">
+                    <IconeConquista nome={b.icone} className="size-5 text-xp-icone" />
+                    <span>{b.nome}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button asChild variant="link" className="h-auto p-0"><Link to="/conquistas">Ver todas as conquistas</Link></Button>
+            </CardContent>
+          </Card>
+          <ModalConquista aberto={modalAberto} aoFechar={() => setModalAberto(false)} novas={novas} badges={badges.data ?? []} conquistadas={conquistas.data ?? []} />
+        </>
+      )}
 
       {testeFinalLiberado && trilhaConcluida && (
         <Card className="border-primary/40 bg-primary/5">

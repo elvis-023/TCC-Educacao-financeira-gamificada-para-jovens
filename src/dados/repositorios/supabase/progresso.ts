@@ -19,4 +19,6 @@ export const progressoSupabase: RepositorioProgresso = {
     const { error } = await cliente().rpc('concluir_leitura', { p_licao_id: licaoId });
     if (error) throw new Error(traduzirErro(error));
   },
+  // No modo Supabase não há fila offline: tudo grava direto no servidor.
+  sincronizarPendentes: async () => 0,
 };

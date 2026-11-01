@@ -1,8 +1,10 @@
-import { alterarBanco, carregarBanco } from '@/dados/bancoLocal';
-import { LICOES, QUIZZES } from '@/dados/demo/trilhas';
-import type { Questao, ResultadoResposta } from '@/dados/tipos';
+import { alterarBanco, carregarBanco, type BancoDados } from '@/dados/bancoLocal';
+import { BADGES } from '@/dados/demo/badges';
+import { LICOES, QUIZZES, TRILHAS } from '@/dados/demo/trilhas';
+import type { CodigoBadge, Questao, ResultadoResposta } from '@/dados/tipos';
 import { agora } from '@/lib/relogio';
-import { xpPorResposta } from '@/regras/gamificacao';
+import { verificarConquistas, xpPorResposta } from '@/regras/gamificacao';
+import { trilhasConcluidas as contarTrilhasConcluidas } from '@/regras/progresso';
 import { nivelAtualDaTrilha, porData, proximoNivel, selecionarProximaQuestao, type CandidataQuestao } from '@/regras/motorAdaptativo';
 import type { RepositorioQuiz } from '../contratos';
 import { estaOnline, parametrosAtuaisLocal, registrarAtividade, responder, usuarioDaSessao } from './comum';
@@ -14,6 +16,31 @@ const licaoDoQuiz = (quizId: string) => {
 };
 const candidataDe = (q: Questao): CandidataQuestao => ({ id: q.id, licaoOrdem: licaoDoQuiz(q.quizId).licao.ordem, nivel: q.nivelDificuldade, ativa: q.ativa });
 const daTrilha = (questoes: Questao[], trilhaId: string) => questoes.filter((q) => licaoDoQuiz(q.quizId).licao.trilhaId === trilhaId);
+
+/** RF08: confere as conquistas ao concluir o quiz, grava as novas e avisa. Mesma regra da função `conceder_conquistas` do servidor. */
+function concederConquistas(banco: BancoDados, usuarioId: string, questoesNoQuiz: number, acertosNoQuiz: number, instante: Date): CodigoBadge[] {
+  const meusProgressos = banco.progressos.filter((p) => p.usuarioId === usuarioId);
+  const usuario = banco.usuarios.find((u) => u.id === usuarioId)!;
+  const concluidasPorTrilha = TRILHAS.map((t) => meusProgressos.filter((p) => p.trilhaId === t.id && p.quizConcluidoEm).length);
+  const novas = verificarConquistas({
+    quizzesConcluidos: meusProgressos.filter((p) => p.quizConcluidoEm).length,
+    trilhasConcluidas: contarTrilhasConcluidas(meusProgressos),
+    maiorNumeroDeLicoesNumaTrilha: Math.max(...concluidasPorTrilha),
+    sequenciaDias: usuario.diasStreak,
+    acertosNoQuiz, questoesNoQuiz,
+    chegouAoDificil: banco.respostasQuiz.some((r) => r.usuarioId === usuarioId && r.nivelTrilhaApos === 'dificil'),
+    jaConquistadas: banco.usuarioBadges.filter((b) => b.usuarioId === usuarioId).map((b) => b.badgeId),
+  });
+  const quando = instante.toISOString();
+  const aviso = (tipo: 'conquista' | 'sistema', mensagem: string, link: string) =>
+    banco.notificacoes.push({ id: crypto.randomUUID(), usuarioId, tipo, mensagem, link, dataEnvio: quando, lida: false });
+  for (const codigo of novas) {
+    banco.usuarioBadges.push({ usuarioId, badgeId: codigo, conquistadoEm: quando });
+    aviso('conquista', `Você ganhou a conquista ${BADGES.find((b) => b.id === codigo)!.nome}!`, '/conquistas');
+  }
+  if (novas.includes('mestre_das_financas')) aviso('sistema', 'Teste final liberado! Faça agora para ver a sua evolução.', '/pos-teste');
+  return novas;
+}
 
 export const quizLocal: RepositorioQuiz = {
   async proximaQuestao(quizId) {
@@ -75,14 +102,16 @@ export const quizLocal: RepositorioQuiz = {
       const xpNoQuiz = doQuiz.reduce((s, r) => s + r.xpGanho, 0);
       const quizConcluido = doQuiz.length >= quiz.numeroQuestoes;
       let trilhaConcluida = false;
+      let conquistasNovas: CodigoBadge[] = [];
       if (quizConcluido) {
         Object.assign(progresso, { quizConcluidoEm: instante.toISOString(), acertos: acertosNoQuiz, xpGanho: xpNoQuiz, sincronizadoOffline: estaOnline() });
         registrarAtividade(banco, usuarioId, instante);
         trilhaConcluida = banco.progressos.filter((p) => p.usuarioId === usuarioId && p.trilhaId === licao.trilhaId && p.quizConcluidoEm).length >= 3;
+        conquistasNovas = concederConquistas(banco, usuarioId, quiz.numeroQuestoes, acertosNoQuiz, instante);
       }
       return {
         acertou, respostaCorreta: questao.respostaCorreta, explicacao: questao.explicacao, xpGanho, nivelAntes, nivelDepois,
-        quizConcluido, acertosNoQuiz, xpNoQuiz, trilhaConcluida, conquistasNovas: [], // o passo 14 preenche as conquistas
+        quizConcluido, acertosNoQuiz, xpNoQuiz, trilhaConcluida, conquistasNovas,
       };
     });
     return responder(resultado);

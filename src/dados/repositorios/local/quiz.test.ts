@@ -48,6 +48,20 @@ describe('quiz no modo local (RN02, RN03, RF02)', () => {
     expect(await quizLocal.proximaQuestao(QUIZ)).toBeNull();
   });
 
+  it('RF08: o roteiro concede Gabaritou e Desafio Aceito, avisa no sino e não repete', async () => {
+    await progressoLocal.concluirLeitura('juros-compostos-2');
+    await responderProxima(true);
+    await responderProxima(true);
+    const { resultado } = await responderProxima(true);
+    expect(resultado.conquistasNovas).toEqual(['gabaritou', 'desafio_aceito']);
+
+    const banco = carregarBanco();
+    const doAlex = banco.usuarioBadges.filter((b) => b.usuarioId === ID_ALEX).map((b) => b.badgeId);
+    expect(doAlex.sort()).toEqual(['desafio_aceito', 'gabaritou', 'primeira_trilha', 'primeiro_quiz']);
+    const avisos = banco.notificacoes.filter((n) => n.usuarioId === ID_ALEX && n.tipo === 'conquista' && !n.lida);
+    expect(avisos.map((n) => n.mensagem)).toEqual(expect.arrayContaining(['Você ganhou a conquista Gabaritou!', 'Você ganhou a conquista Desafio Aceito!']));
+  });
+
   it('nenhuma questão se repete dentro do mesmo quiz e o erro vale 2 XP de participação', async () => {
     await progressoLocal.concluirLeitura('juros-compostos-2');
     const ids: string[] = [];

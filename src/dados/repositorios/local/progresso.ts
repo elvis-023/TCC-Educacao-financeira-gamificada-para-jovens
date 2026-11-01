@@ -27,4 +27,13 @@ export const progressoLocal: RepositorioProgresso = {
     });
     await responder(null);
   },
+  async sincronizarPendentes() {
+    const usuarioId = usuarioDaSessao();
+    const quantidade = alterarBanco((banco) => {
+      const pendentes = banco.progressos.filter((p) => p.usuarioId === usuarioId && !p.sincronizadoOffline);
+      pendentes.forEach((p) => { p.sincronizadoOffline = true; });
+      return pendentes.length;
+    });
+    return responder(quantidade);
+  },
 };

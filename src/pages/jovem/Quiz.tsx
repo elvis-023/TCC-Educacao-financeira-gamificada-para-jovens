@@ -2,6 +2,7 @@ import { CircleCheck, CircleX, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router';
 import { toast } from 'sonner';
+import { AvisoSemInternet } from '@/components/AvisoSemInternet';
 import { EtiquetaNivel } from '@/components/EtiquetaNivel';
 import {
   AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
@@ -15,6 +16,7 @@ import { useLicoes, useTrilhas } from '@/hooks/dados/useConteudo';
 import { useProgressos } from '@/hooks/dados/useProgresso';
 import { useResponder } from '@/hooks/dados/useQuiz';
 import { NaoEncontrada } from '@/pages/NaoEncontrada';
+import { useTrilhaIndisponivel } from '@/hooks/useConexao';
 import { NIVEIS } from '@/regras/motorAdaptativo';
 import { estadoDaLicao, type EstadoLicao } from '@/regras/progresso';
 import { MENSAGEM_BLOQUEIO } from './Trilha';
@@ -26,6 +28,7 @@ interface Feedback { resultado: ResultadoResposta; escolhida: number }
 export function Quiz() {
   const { trilha: slug, licao: ordemTexto } = useParams();
   const trilhas = useTrilhas();
+  const semInternet = useTrilhaIndisponivel(trilhas.data?.find((t) => t.slug === slug)?.id);
   const licoes = useLicoes();
   const progressos = useProgressos();
 
@@ -42,6 +45,7 @@ export function Quiz() {
   const daTrilha = (licoes.data ?? []).filter((l) => l.trilhaId === trilha?.id).sort((a, b) => a.ordem - b.ordem);
   const licao = daTrilha.find((l) => String(l.ordem) === ordemTexto);
   if (!trilha || !licao) return <NaoEncontrada />;
+  if (semInternet) return <AvisoSemInternet voltarPara="/trilhas" />;
 
   // O estado da lição só vale na abertura: ao concluir o quiz ele muda, e a tela não deve redirecionar antes do feedback.
   return <QuizAberto key={licao.id} trilha={trilha} licao={licao} estadoNaAbertura={estadoDaLicao(licao, daTrilha, progressos.data ?? [])} />;

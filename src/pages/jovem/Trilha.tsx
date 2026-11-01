@@ -1,12 +1,15 @@
 import { BookOpen, CircleCheck, CircleDashed, Lock, type LucideIcon } from 'lucide-react';
 import { Link, useParams } from 'react-router';
 import { toast } from 'sonner';
+import { AvisoSemInternet } from '@/components/AvisoSemInternet';
+import { BaixarTrilha } from '@/components/BaixarTrilha';
 import { EtiquetaNivel } from '@/components/EtiquetaNivel';
 import { SeloStatus } from '@/components/SeloStatus';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useLicoes, useTrilhas } from '@/hooks/dados/useConteudo';
 import { useProgressoDasTrilhas, useProgressos } from '@/hooks/dados/useProgresso';
+import { useTrilhaIndisponivel } from '@/hooks/useConexao';
 import { estadoDaLicao, type EstadoLicao } from '@/regras/progresso';
 import { NaoEncontrada } from '@/pages/NaoEncontrada';
 
@@ -25,6 +28,8 @@ export function Trilha() {
   const licoes = useLicoes();
   const progressos = useProgressos();
   const { carregando, mapa } = useProgressoDasTrilhas();
+  const trilhaDaRota = trilhas.data?.find((t) => t.slug === slug);
+  const semInternet = useTrilhaIndisponivel(trilhaDaRota?.id);
 
   if (trilhas.isPending || licoes.isPending || progressos.isPending || carregando) {
     return (
@@ -40,6 +45,7 @@ export function Trilha() {
 
   const trilha = trilhas.data?.find((t) => t.slug === slug);
   if (!trilha) return <NaoEncontrada />;
+  if (semInternet) return <AvisoSemInternet voltarPara="/trilhas" />;
 
   const daTrilha = (licoes.data ?? []).filter((l) => l.trilhaId === trilha.id).sort((a, b) => a.ordem - b.ordem);
   const p = mapa.get(trilha.id);
@@ -56,6 +62,7 @@ export function Trilha() {
         </div>
         <Progress value={(concluidas / 3) * 100} aria-label={`Progresso: ${concluidas} de 3 lições`} />
         <p className="text-sm text-muted-foreground tabular-nums">{concluidas} de 3 lições concluídas</p>
+        <BaixarTrilha trilhaId={trilha.id} />
       </header>
 
       <ol className="space-y-2">

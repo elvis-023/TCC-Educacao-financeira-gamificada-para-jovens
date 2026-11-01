@@ -1,5 +1,9 @@
 import { Calculator, CreditCard, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router';
+import { CardPosicaoRanking } from '@/components/CardPosicaoRanking';
+import { CardProximaConquista } from '@/components/CardProximaConquista';
+import { CardTesteFinal } from '@/components/CardTesteFinal';
+import { LinkTrilha } from '@/components/LinkTrilha';
 import { SeloStatus } from '@/components/SeloStatus';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -80,14 +84,14 @@ export function Inicio() {
                 const concluidas = p?.licoesConcluidas ?? 0;
                 return (
                   <li key={trilha.id}>
-                    <Link to={`/trilhas/${trilha.slug}`} className="block space-y-2 rounded-lg p-2 hover:bg-muted/50 focus-visible:outline-2 focus-visible:outline-ring">
+                    <LinkTrilha trilhaId={trilha.id} slug={trilha.slug} className="block space-y-2 rounded-lg p-2 hover:bg-muted/50 focus-visible:outline-2 focus-visible:outline-ring">
                       <div className="flex items-center justify-between gap-2">
                         <span className="font-medium">{trilha.titulo}</span>
                         {p && <SeloStatus status={p.status} />}
                       </div>
                       <Progress value={(concluidas / 3) * 100} aria-label={`Progresso: ${concluidas} de 3 lições`} />
                       <p className="text-sm text-muted-foreground tabular-nums">{concluidas} de 3 lições</p>
-                    </Link>
+                    </LinkTrilha>
                   </li>
                 );
               })}
@@ -109,7 +113,14 @@ export function Inicio() {
         </CardContent>
       </Card>
 
-      {/* 4. Próxima conquista e ranking (passos 14 e 15) e 5. Teste final (passo 13) entram junto com essas funções. */}
+      {/* 4. Próxima conquista (esquerda) e posição no ranking (direita) */}
+      <div className="grid grid-cols-2 gap-3">
+        <CardProximaConquista />
+        <CardPosicaoRanking />
+      </div>
+
+      {/* 5. Teste final */}
+      <CardTesteFinal />
     </div>
   );
 }

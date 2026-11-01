@@ -1,5 +1,5 @@
 import type {
-  Badge, Licao, Notificacao, Papel, PerguntaPublica, Progresso, QuestaoPublica, Quiz, RespostaQuiz, ResultadoResposta, ResumoTeste, Sessao, Simulacao, TipoTeste, Trilha, Usuario,
+  Badge, ChaveParametro, LinhaExportacao, LinhaHistoricoParametro, LinhaRanking, Licao, MetricasPesquisa, Notificacao, Papel, PerguntaPublica, Progresso, QuestaoAdmin, QuestaoEditavel, QuestaoPublica, Quiz, RespostaQuiz, ResultadoResposta, ResumoTeste, Sessao, Simulacao, TipoTeste, Trilha, Usuario, UsuarioBadge,
 } from '@/dados/tipos';
 
 export interface DadosCadastro { nome: string; email: string; senha: string; tcleVersao: string }
@@ -28,6 +28,7 @@ export interface RepositorioProgresso {
   meusProgressos(): Promise<Progresso[]>;
   minhasRespostas(): Promise<RespostaQuiz[]>;
   concluirLeitura(licaoId: string): Promise<void>;
+  sincronizarPendentes(): Promise<number>;
 }
 export interface RepositorioQuiz {
   proximaQuestao(quizId: string): Promise<QuestaoPublica | null>;
@@ -35,6 +36,10 @@ export interface RepositorioQuiz {
 }
 export interface RepositorioNotificacoes {
   minhasNotificacoes(): Promise<Notificacao[]>;
+  marcarComoLida(id: string): Promise<void>;
+  marcarTodasComoLidas(): Promise<void>;
+  /** Gera o lembrete de inatividade (RF09, RN04) quando for o caso; devolve a notificação nova ou null. */
+  verificarLembrete(): Promise<Notificacao | null>;
 }
 export interface RepositorioTestes {
   meusTestes(): Promise<ResumoTeste[]>;
@@ -46,6 +51,33 @@ export interface RepositorioSimulacoes {
   salvar(simulacao: Pick<Simulacao, 'tipoSimulacao' | 'parametros' | 'resultadoFinal'>): Promise<void>;
 }
 
+export interface RepositorioConquistas {
+  minhasConquistas(): Promise<UsuarioBadge[]>;
+}
+export type PeriodoRanking = 'geral' | 'semana';
+export interface RepositorioRanking {
+  ranking(periodo: PeriodoRanking): Promise<LinhaRanking[]>;
+}
+
+/** Área do administrador (RF10, RF11, RF12): cada método recusa quem não for administrador. */
+export interface RepositorioAdmin {
+  metricasPesquisa(): Promise<MetricasPesquisa>;
+  exportarRespostas(): Promise<LinhaExportacao[]>;
+  listarQuestoes(): Promise<QuestaoAdmin[]>;
+  salvarQuestao(questao: QuestaoEditavel): Promise<string>;
+  parametrosAtuais(): Promise<Record<ChaveParametro, number>>;
+  historicoParametros(): Promise<LinhaHistoricoParametro[]>;
+  salvarParametros(valores: Record<ChaveParametro, number>): Promise<void>;
+}
+
+export interface RepositorioDemonstracao {
+  disponivel: boolean; // false com a base de dados real
+  limiteDeInatividade(): Promise<number>;
+  avancarRelogio(horas: number): Promise<void>;
+  liberarPosTeste(): Promise<void>;
+  reiniciar(): Promise<void>;
+}
+
 export interface Repositorios {
   sessao: RepositorioSessao;
   usuario: RepositorioUsuario;
@@ -55,4 +87,8 @@ export interface Repositorios {
   testes: RepositorioTestes;
   notificacoes: RepositorioNotificacoes;
   simulacoes: RepositorioSimulacoes;
+  conquistas: RepositorioConquistas;
+  ranking: RepositorioRanking;
+  demonstracao: RepositorioDemonstracao;
+  admin: RepositorioAdmin;
 }

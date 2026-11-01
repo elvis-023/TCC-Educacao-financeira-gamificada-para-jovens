@@ -1,5 +1,6 @@
 import { Bell, Flame, Sparkles } from 'lucide-react';
 import { Link } from 'react-router';
+import { AvisoRelogioSimulado } from '@/components/AvisoRelogioSimulado';
 import { useNaoLidas } from '@/hooks/dados/useNotificacoes';
 import { useMeuUsuario } from '@/hooks/dados/useUsuario';
 import { useAgora } from '@/hooks/useRelogio';
@@ -21,8 +22,9 @@ export function TopoJovem({ titulo, saudacao }: Props) {
   const rotuloSino = naoLidas === 0 ? 'Notificações, nenhuma não lida' : `Notificações, ${naoLidas} ${naoLidas === 1 ? 'não lida' : 'não lidas'}`;
 
   return (
-    <header className="sticky top-0 z-10 flex min-h-14 items-center justify-between gap-2 border-b bg-background px-4">
+    <header className="flex min-h-14 items-center justify-between gap-2 border-b bg-background px-4">
       <p className="truncate font-semibold">{saudacao ? (primeiroNome ? `Olá, ${primeiroNome}!` : 'Olá!') : titulo}</p>
+      <AvisoRelogioSimulado />
       <div className="flex shrink-0 items-center gap-3">
         <span className="inline-flex items-center gap-1 text-sm font-medium text-xp tabular-nums" aria-label={`${xp} XP no total`}>
           <Sparkles aria-hidden="true" className="size-4 text-xp-icone" />
