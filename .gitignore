@@ -1,0 +1,35 @@
+# Dependências e build
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Variáveis de ambiente (o .env.example vai versionado)
+.env
+.env.*
+!.env.example
+
+# Cloudflare e Supabase CLI
+.wrangler/
+supabase/.temp/
+supabase/.branches/
+
+# Logs, cache e cobertura de testes
+*.log
+.vite/
+coverage/
+
+# Editor e sistema
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Arquivos que ficam só nesta máquina
+CLAUDE.md
+.claude/
+/Prompt-PRD-Software-Funcionando-02-11-2026.txt
+/Entregas/
+/feedbackProfessor/
+/Cronogramas das Entregas.jpg
