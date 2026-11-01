@@ -29,21 +29,23 @@ describe('área do administrador no modo local (RF10, RF11, RF12)', () => {
     expect(m.ganhoMedio).toBeCloseTo(26.667, 3);
   });
 
-  it('RF10: lista as 48 questões e cria, edita e inativa sem excluir', async () => {
-    expect(await adminLocal.listarQuestoes()).toHaveLength(48);
+  it('RF10: lista as 336 questões e cria, edita e inativa sem excluir', async () => {
+    expect(await adminLocal.listarQuestoes()).toHaveLength(336);
     const id = await adminLocal.salvarQuestao(nova());
-    expect(await adminLocal.listarQuestoes()).toHaveLength(49);
+    expect(await adminLocal.listarQuestoes()).toHaveLength(337);
     await adminLocal.salvarQuestao(nova({ id, ativa: false }));
     expect(carregarBanco().questoes.find((q) => q.id === id)!.ativa).toBe(false);
-    expect(await adminLocal.listarQuestoes()).toHaveLength(49);
+    expect(await adminLocal.listarQuestoes()).toHaveLength(337);
   });
 
-  it('RF10: a lição 1 mantém 3 questões ativas (a 2ª inativação é bloqueada)', async () => {
+  it('RF10: a lição 1 mantém 3 questões ativas: da 26ª inativação em diante, o servidor bloqueia', async () => {
     const daLicao1 = (await adminLocal.listarQuestoes()).filter((q) => q.licaoId === 'juros-compostos-1');
-    const [a, b] = daLicao1;
-    const editavel = (q: typeof a): QuestaoEditavel => ({ id: q.id, quizId: q.quizId, enunciado: q.enunciado, alternativas: q.alternativas, respostaCorreta: q.respostaCorreta, nivelDificuldade: q.nivelDificuldade, explicacao: q.explicacao, ativa: false });
-    await adminLocal.salvarQuestao(editavel(a));
-    await expect(adminLocal.salvarQuestao(editavel(b))).rejects.toThrow('A lição 1 de cada trilha precisa de pelo menos 3 questões ativas');
+    expect(daLicao1).toHaveLength(28);
+    const inativada = (q: (typeof daLicao1)[number]): QuestaoEditavel => ({ id: q.id, quizId: q.quizId, enunciado: q.enunciado, alternativas: q.alternativas, respostaCorreta: q.respostaCorreta, nivelDificuldade: q.nivelDificuldade, explicacao: q.explicacao, ativa: false });
+    for (const q of daLicao1.slice(0, 25)) await adminLocal.salvarQuestao(inativada(q));
+    await expect(adminLocal.salvarQuestao(inativada(daLicao1[25]))).rejects.toThrow('A lição 1 de cada trilha precisa de pelo menos 3 questões ativas');
+    const ativas = (await adminLocal.listarQuestoes()).filter((q) => q.licaoId === 'juros-compostos-1' && q.ativa);
+    expect(ativas).toHaveLength(3);
   });
 
   it('RF11: parâmetros com autor e data; só grava o que mudou; valida antes', async () => {

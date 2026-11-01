@@ -1,6 +1,11 @@
 import type { Nivel, Questao } from '@/dados/tipos';
+import { QUESTOES_CARTAO_DE_CREDITO } from './questoesNovas/cartaoDeCredito';
+import { QUESTOES_INFLACAO_E_INVESTIMENTOS } from './questoesNovas/inflacaoEInvestimentos';
+import { QUESTOES_JUROS_COMPOSTOS } from './questoesNovas/jurosCompostos';
+import { QUESTOES_ORCAMENTO_PESSOAL } from './questoesNovas/orcamentoPessoal';
 
-// Banco de demonstração do quiz (PRD 6.6): 48 questões, 4 por lição. Os ids e os níveis seguem estruturaQuestoes.ts.
+// Banco do quiz: 336 questões, 28 por lição. As 48 primeiras (4 por lição, PRD 6.6) ficam aqui; as 288 novas, em questoesNovas/.
+// Os ids e os níveis seguem estruturaQuestoes.ts.
 // Todas as contas foram conferidas. Nenhuma repete as perguntas do teste diagnóstico nem usa os mesmos números.
 const DATA = '2026-10-01T12:00:00.000Z';
 
@@ -16,7 +21,8 @@ function q(
   };
 }
 
-export const QUESTOES: Questao[] = [
+/** As 48 questões do primeiro banco. O histórico de demonstração aponta para elas e a migração inicial do Supabase só traz estas. */
+export const QUESTOES_BASE: Questao[] = [
   // ---------- Orçamento Pessoal ----------
   q('orcamento-pessoal-1-f1', 'facil', 'No orçamento pessoal, o que é a renda?',
     'Todo o dinheiro que você recebe no mês', ['Só o dinheiro que sobra depois dos gastos', 'O total das suas dívidas', 'O valor guardado na reserva de emergência'], 0,
@@ -177,3 +183,13 @@ export const QUESTOES: Questao[] = [
     'Reduz o risco de grandes perdas, mas não o elimina', ['Elimina totalmente o risco', 'Garante lucro em qualquer cenário', 'Só funciona para quem tem muito dinheiro'], 2,
     'Diversificar espalha o risco, mas todo investimento pode ter perdas. Não há garantia de lucro, e dá para diversificar com valores pequenos, por exemplo em fundos.'),
 ];
+
+/** As 288 questões novas (72 por trilha); a migração `20261101121200_questoes_novas.sql` leva só essas ao Supabase. */
+export const QUESTOES_NOVAS: Questao[] = [
+  ...QUESTOES_ORCAMENTO_PESSOAL,
+  ...QUESTOES_JUROS_COMPOSTOS,
+  ...QUESTOES_CARTAO_DE_CREDITO,
+  ...QUESTOES_INFLACAO_E_INVESTIMENTOS,
+];
+
+export const QUESTOES: Questao[] = [...QUESTOES_BASE, ...QUESTOES_NOVAS];

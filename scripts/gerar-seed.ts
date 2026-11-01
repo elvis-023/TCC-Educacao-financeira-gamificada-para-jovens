@@ -2,7 +2,7 @@ import { writeFileSync } from 'node:fs';
 import { BADGES } from '../src/dados/demo/badges';
 import { PARAMETROS_PADRAO } from '../src/dados/demo/parametros';
 import { PERGUNTAS_DIAGNOSTICAS } from '../src/dados/demo/perguntasDiagnosticas';
-import { QUESTOES } from '../src/dados/demo/questoes';
+import { QUESTOES_BASE, QUESTOES_NOVAS } from '../src/dados/demo/questoes';
 import { LICOES, QUIZZES, TRILHAS } from '../src/dados/demo/trilhas';
 
 const texto = (s: string) => `'${s.replace(/'/g, "''")}'`;
@@ -26,7 +26,7 @@ for (const l of LICOES) {
 for (const q of QUIZZES) {
   sql.push(`insert into public.quizzes (id, licao_id, tipo_avaliacao, numero_questoes) values (${texto(q.id)}, ${texto(q.licaoId)}, ${texto(q.tipoAvaliacao)}, ${q.numeroQuestoes}) on conflict (id) do nothing;`);
 }
-for (const q of QUESTOES) {
+for (const q of QUESTOES_BASE) {
   sql.push(`insert into public.questoes (id, quiz_id, enunciado, alternativas, resposta_correta, nivel_dificuldade, explicacao, ativa) values (${texto(q.id)}, ${texto(q.quizId)}, ${texto(q.enunciado)}, ${lista(q.alternativas)}, ${q.respostaCorreta}, ${texto(q.nivelDificuldade)}, ${texto(q.explicacao)}, ${q.ativa}) on conflict (id) do nothing;`);
 }
 for (const b of BADGES) {
@@ -43,4 +43,13 @@ select x.chave, x.valor from (values ${valores}) as x(chave, valor)
 where not exists (select 1 from public.parametros_sistema p where p.chave = x.chave);`);
 
 writeFileSync('supabase/migrations/20261101120300_conteudo.sql', `${sql.join('\n')}\n`);
-console.log(`SQL gerado: ${TRILHAS.length} trilhas, ${LICOES.length} lições, ${QUESTOES.length} questões.`);
+console.log(`SQL gerado: ${TRILHAS.length} trilhas, ${LICOES.length} lições, ${QUESTOES_BASE.length} questões.`);
+
+// As 288 questões novas vão numa migração à parte: o projeto de desenvolvimento já recebeu a inicial.
+const novas = [
+  '-- Gerado por scripts/gerar-seed.ts (npm run gerar:seed). Não editar à mão: mude src/dados/demo/questoesNovas e gere de novo.',
+  '-- Amplia o banco do quiz de 48 para 336 questões (28 por lição). Questões já existentes não são sobrescritas.',
+  ...QUESTOES_NOVAS.map((q) => `insert into public.questoes (id, quiz_id, enunciado, alternativas, resposta_correta, nivel_dificuldade, explicacao, ativa) values (${texto(q.id)}, ${texto(q.quizId)}, ${texto(q.enunciado)}, ${lista(q.alternativas)}, ${q.respostaCorreta}, ${texto(q.nivelDificuldade)}, ${texto(q.explicacao)}, ${q.ativa}) on conflict (id) do nothing;`),
+];
+writeFileSync('supabase/migrations/20261101121200_questoes_novas.sql', `${novas.join('\n')}\n`);
+console.log(`SQL das questões novas: ${QUESTOES_NOVAS.length} questões.`);

@@ -14,8 +14,8 @@ describe('modo treino no modo local', () => {
 
   it('só libera questões de lições com quiz concluído (Alex fez 4 quizzes)', async () => {
     const { questoesDisponiveis, xpHoje } = await treinoLocal.estado();
-    expect(questoesDisponiveis).toBeGreaterThanOrEqual(12);
-    expect(questoesDisponiveis).toBeLessThan(48);
+    // 4 lições concluídas × 28 questões por lição (banco de 336)
+    expect(questoesDisponiveis).toBe(4 * 28);
     expect(xpHoje).toBe(0);
   });
 

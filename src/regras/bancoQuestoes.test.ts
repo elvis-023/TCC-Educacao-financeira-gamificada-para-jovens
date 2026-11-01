@@ -14,11 +14,15 @@ describe('banco de questões (RF10)', () => {
     expect(validarQuestao(editavel('juros-compostos-2-m1'), QUESTOES, PERGUNTAS_DIAGNOSTICAS)).toBeNull();
   });
   it('RF10: a lição 1 de cada trilha mantém pelo menos 3 questões ativas', () => {
-    const semUma = QUESTOES.map((q) => (q.id === 'juros-compostos-1-f1' ? { ...q, ativa: false } : q));
-    expect(validarQuestao({ ...editavel('juros-compostos-1-m1'), ativa: false }, semUma, PERGUNTAS_DIAGNOSTICAS))
+    // Só 3 questões ativas na lição 1 de Juros Compostos: nenhuma delas pode ser inativada nem mudar de lição.
+    const manter = ['juros-compostos-1-f1', 'juros-compostos-1-m1', 'juros-compostos-1-m2'];
+    const comTres = QUESTOES.map((q) => (q.quizId === 'juros-compostos-1-quiz' && !manter.includes(q.id) ? { ...q, ativa: false } : q));
+    expect(validarQuestao({ ...editavel('juros-compostos-1-m1'), ativa: false }, comTres, PERGUNTAS_DIAGNOSTICAS))
       .toBe('A lição 1 de cada trilha precisa de pelo menos 3 questões ativas');
-    expect(validarQuestao({ ...editavel('juros-compostos-1-m1'), quizId: 'juros-compostos-2-quiz' }, semUma, PERGUNTAS_DIAGNOSTICAS))
+    expect(validarQuestao({ ...editavel('juros-compostos-1-m1'), quizId: 'juros-compostos-2-quiz' }, comTres, PERGUNTAS_DIAGNOSTICAS))
       .toBe('A lição 1 de cada trilha precisa de pelo menos 3 questões ativas');
+    // Com o banco completo (28 questões na lição), inativar uma questão é permitido.
+    expect(validarQuestao({ ...editavel('juros-compostos-1-m1'), ativa: false }, QUESTOES, PERGUNTAS_DIAGNOSTICAS)).toBeNull();
   });
   it('RF05: enunciado igual a uma pergunta do teste diagnóstico é bloqueado', () => {
     const copia = { ...editavel('juros-compostos-2-m1'), enunciado: PERGUNTAS_DIAGNOSTICAS[0].enunciado.toUpperCase() };
