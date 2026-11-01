@@ -13,9 +13,9 @@ export default defineConfig({
         // Bibliotecas grandes ficam em arquivos próprios: o navegador guarda cada uma em cache e o arquivo do app encolhe.
         codeSplitting: {
           groups: [
-            { name: 'supabase', test: /node_modules/@supabase/ },
-            { name: 'react', test: /node_modules/(react|react-dom|react-router|scheduler)// },
-            { name: 'consultas', test: /node_modules/@tanstack/ },
+            { name: 'supabase', test: /node_modules[/]@supabase/ },
+            { name: 'react', test: /node_modules[/](react|react-dom|react-router|scheduler)[/]/ },
+            { name: 'consultas', test: /node_modules[/]@tanstack/ },
           ],
         },
       },
