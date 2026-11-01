@@ -153,6 +153,12 @@
     }
 }
 
+@keyframes celebrar {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.animar-celebracao { animation: celebrar 600ms ease-out both; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

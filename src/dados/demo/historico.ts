@@ -1,5 +1,6 @@
 import type { Nivel, Progresso, RespostaQuiz, UsuarioBadge } from '@/dados/tipos';
 import { instanteRelativo } from '@/lib/fuso';
+import { QUESTOES } from './questoes';
 import { ID_ALEX } from './usuarios';
 
 type Linha = [questaoId: string, nivelQuestao: Nivel, acertou: boolean, nivelTrilhaApos: Nivel];
@@ -29,6 +30,12 @@ const QUIZZES_DO_ALEX: { diasAtras: number; horaLeitura: [number, number]; licao
 
 const XP: Record<Nivel, number> = { facil: 10, medio: 20, dificil: 35 };
 
+/** Alternativa coerente com o resultado: a correta quando acertou; outra quando errou. */
+const marcada = (id: string, acertou: boolean) => {
+  const questao = QUESTOES.find((x) => x.id === id)!;
+  return acertou ? questao.respostaCorreta : (questao.respostaCorreta + 1) % 4;
+};
+
 export function criarHistoricoDoAlex(agora: Date): { progressos: Progresso[]; respostasQuiz: RespostaQuiz[]; usuarioBadges: UsuarioBadge[] } {
   const progressos: Progresso[] = [];
   const respostasQuiz: RespostaQuiz[] = [];
@@ -43,7 +50,7 @@ export function criarHistoricoDoAlex(agora: Date): { progressos: Progresso[]; re
       xpQuiz += xpGanho;
       respostasQuiz.push({
         id: `demo-resposta-${questaoId}`, usuarioId: ID_ALEX, quizId: `${q.licaoId}-quiz`, questaoId, trilhaId, nivelQuestao,
-        alternativaMarcada: 0, acertou, xpGanho, nivelTrilhaApos, respondidaEm: instanteRelativo(agora, q.diasAtras, h, m + 10 + i),
+        alternativaMarcada: marcada(questaoId, acertou), acertou, xpGanho, nivelTrilhaApos, respondidaEm: instanteRelativo(agora, q.diasAtras, h, m + 10 + i),
       });
     });
     progressos.push({

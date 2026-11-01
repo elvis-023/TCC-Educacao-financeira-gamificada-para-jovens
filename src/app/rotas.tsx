@@ -9,6 +9,8 @@ import { TelaProvisoria } from '@/pages/TelaProvisoria';
 import { Inicio } from '@/pages/jovem/Inicio';
 import { Licao } from '@/pages/jovem/Licao';
 import { Perfil } from '@/pages/jovem/Perfil';
+import { Quiz } from '@/pages/jovem/Quiz';
+import { ResultadoQuiz } from '@/pages/jovem/ResultadoQuiz';
 import { Trilha } from '@/pages/jovem/Trilha';
 import { Trilhas } from '@/pages/jovem/Trilhas';
 import { BoasVindas } from '@/pages/publico/BoasVindas';
@@ -42,8 +44,8 @@ export const roteador = createBrowserRouter([
           { path: '/pre-teste', element: provisoria('T05 Pré-teste') },
           { path: '/pos-teste', element: provisoria('T06 Pós-teste') },
           { path: '/trilhas/:trilha/licoes/:licao', element: <Licao /> },
-          { path: '/trilhas/:trilha/licoes/:licao/quiz', element: provisoria('T11 Quiz') },
-          { path: '/trilhas/:trilha/licoes/:licao/resultado', element: provisoria('T12 Resultado do quiz') },
+          { path: '/trilhas/:trilha/licoes/:licao/quiz', element: <Quiz /> },
+          { path: '/trilhas/:trilha/licoes/:licao/resultado', element: <ResultadoQuiz /> },
         ],
       },
       {
