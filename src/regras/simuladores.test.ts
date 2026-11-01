@@ -36,9 +36,9 @@ describe('juros compostos (RN01, RN06)', () => {
     expect(centavos(r.evolucao[12].saldo)).toBe(239508);
     expect(r.evolucao[12].investido).toBe(2200);
   });
-  it('RN06: taxa sugerida de exemplo numa constante única', () => {
-    expect(TAXA_SUGERIDA).toMatchObject({ percentual: 10, unidade: 'ano', ehExemplo: true, dataReferencia: null });
-    expect(TAXA_SUGERIDA.texto).toBe('Valor de exemplo — será trocado pelo CDI anualizado base 252 do Banco Central');
+  it('RN06: taxa sugerida é o CDI anualizado base 252, numa constante única com data de referência e fonte', () => {
+    expect(TAXA_SUGERIDA).toMatchObject({ percentual: 13.65, unidade: 'ano', ehExemplo: false, dataReferencia: '29/10/2026' });
+    expect(TAXA_SUGERIDA.fonte).toContain('Banco Central');
   });
 });
 

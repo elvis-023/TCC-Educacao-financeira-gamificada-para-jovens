@@ -34,15 +34,14 @@ export function TopoJovem({ titulo, saudacao }: Props) {
         <AvisoRelogioSimulado />
       </div>
       <div className="flex shrink-0 items-center gap-1.5">
-        <span className="inline-flex h-9 items-center gap-1 rounded-full bg-destaque px-3 font-heading text-sm font-semibold text-destaque-foreground tabular-nums" aria-label={`${xp} XP no total`}>
+        <span className="inline-flex h-9 items-center gap-1 rounded-full bg-destaque px-3 font-heading text-sm font-semibold text-destaque-foreground tabular-nums">
           <Sparkles aria-hidden="true" className="size-4" />
+          <span className="sr-only">{xp} XP no total</span>
           <span aria-hidden="true">{formatarXp(xp)}</span>
         </span>
-        <span
-          className="inline-flex h-9 items-center gap-0.5 rounded-full bg-card px-2.5 font-heading text-sm font-semibold text-sequencia ring-1 ring-foreground/10 tabular-nums"
-          aria-label={`Sequência de ${sequencia} ${sequencia === 1 ? 'dia' : 'dias'}`}
-        >
+        <span className="inline-flex h-9 items-center gap-0.5 rounded-full bg-card px-2.5 font-heading text-sm font-semibold text-sequencia ring-1 ring-foreground/10 tabular-nums">
           <Flame aria-hidden="true" className="size-4 text-sequencia-icone" />
+          <span className="sr-only">Sequência de {sequencia} {sequencia === 1 ? 'dia' : 'dias'}</span>
           <span aria-hidden="true">{sequencia}</span>
         </span>
         <Link to="/notificacoes" aria-label={rotuloSino} className="relative flex size-11 items-center justify-center rounded-full hover:bg-secondary focus-visible:outline-2 focus-visible:outline-ring">

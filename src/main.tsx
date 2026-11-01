@@ -9,9 +9,12 @@ import { armazenamentoOk, carregarBanco } from '@/dados/bancoLocal';
 import { roteador } from '@/app/rotas';
 import { Notificador } from '@/components/Notificador';
 import { ProvedorSessao } from '@/hooks/ProvedorSessao';
+import { carregarAnimacao } from '@/lib/animacao';
 import { aplicarTema, lerTema } from '@/lib/tema';
 
 aplicarTema(lerTema());
+// As animações (GSAP) carregam depois da primeira tela, sem bloquear.
+void carregarAnimacao();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

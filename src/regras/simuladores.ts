@@ -1,13 +1,16 @@
 import type { EntradaFatura, EntradaJuros } from '@/dados/tipos';
 
-/** RN06: taxa sugerida. Trocar aqui pelo CDI anualizado base 252 real, com a data de referência e a fonte. */
+/**
+ * RN06: taxa sugerida = CDI anualizado base 252 do Banco Central (série 4389 do SGS).
+ * Valor fixo, sem atualização automática: para atualizar, troque o percentual e a data de referência juntos.
+ */
 export const TAXA_SUGERIDA = {
-  percentual: 10,
+  percentual: 13.65,
   unidade: 'ano' as const,
-  ehExemplo: true,
-  dataReferencia: null as string | null, // dd/mm/aaaa, quando for o CDI real
-  fonte: null as string | null,
-  texto: 'Valor de exemplo — será trocado pelo CDI anualizado base 252 do Banco Central',
+  ehExemplo: false,
+  dataReferencia: '29/10/2026',
+  fonte: 'Banco Central do Brasil, SGS série 4389 (CDI anualizado base 252)',
+  texto: 'CDI anualizado base 252 em 29/10/2026 (Banco Central), sem atualização automática',
 };
 
 export const AVISO_JUROS = 'Simulação educativa. Não constitui recomendação de investimento. A taxa não é atualizada automaticamente e o cálculo não desconta Imposto de Renda nem IOF.';
