@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import type { z } from 'zod';
 import { CampoFormulario } from '@/components/CampoFormulario';
@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { POLITICA_PRIVACIDADE, TCLE, type Termo } from '@/dados/demo/termos';
 import { repositorios } from '@/dados/repositorios';
+import { MENSAGEM_CONFIRMAR_EMAIL } from '@/dados/repositorios/supabase/sessao';
 import { useAtualizarSessao } from '@/hooks/useSessao';
 import { esquemaCadastro, oQueFalta, type FormularioCadastro } from './esquemasAcesso';
 
@@ -24,6 +25,7 @@ const VALORES_INICIAIS = {
 
 export function Cadastro() {
   const atualizarSessao = useAtualizarSessao();
+  const navigate = useNavigate();
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [termoAberto, setTermoAberto] = useState<Termo | null>(null);
 
@@ -42,7 +44,10 @@ export function Cadastro() {
     } catch (erro) {
       const mensagem = erro instanceof Error ? erro.message : 'Não foi possível criar a conta';
       if (mensagem === 'Já existe uma conta com este e-mail') setError('email', { message: mensagem });
-      else toast.error(mensagem);
+      else if (mensagem === MENSAGEM_CONFIRMAR_EMAIL) {
+        toast.success(mensagem);
+        navigate('/entrar');
+      } else toast.error(mensagem);
       return;
     }
     // A sessão já foi aberta; ao atualizá-la, a guarda leva ao pré-teste (PRD T02).

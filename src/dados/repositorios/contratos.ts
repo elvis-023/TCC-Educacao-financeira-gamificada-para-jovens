@@ -1,5 +1,5 @@
 import type {
-  Badge, Licao, Papel, Progresso, QuestaoPublica, Quiz, RespostaQuiz, ResultadoResposta, ResumoTeste, Sessao, Simulacao, Trilha, Usuario,
+  Badge, Licao, Notificacao, Papel, PerguntaPublica, Progresso, QuestaoPublica, Quiz, RespostaQuiz, ResultadoResposta, ResumoTeste, Sessao, Simulacao, TipoTeste, Trilha, Usuario,
 } from '@/dados/tipos';
 
 export interface DadosCadastro { nome: string; email: string; senha: string; tcleVersao: string }
@@ -33,8 +33,13 @@ export interface RepositorioQuiz {
   proximaQuestao(quizId: string): Promise<QuestaoPublica | null>;
   responder(quizId: string, questaoId: string, alternativa: number): Promise<ResultadoResposta>;
 }
+export interface RepositorioNotificacoes {
+  minhasNotificacoes(): Promise<Notificacao[]>;
+}
 export interface RepositorioTestes {
   meusTestes(): Promise<ResumoTeste[]>;
+  iniciar(tipo: TipoTeste): Promise<{ resumo: ResumoTeste; perguntas: PerguntaPublica[]; respondidas: string[] }>;
+  responder(tipo: TipoTeste, perguntaId: string, alternativa: number): Promise<{ concluido: boolean }>;
 }
 export interface RepositorioSimulacoes {
   minhasSimulacoes(): Promise<Simulacao[]>;
@@ -48,5 +53,6 @@ export interface Repositorios {
   progresso: RepositorioProgresso;
   quiz: RepositorioQuiz;
   testes: RepositorioTestes;
+  notificacoes: RepositorioNotificacoes;
   simulacoes: RepositorioSimulacoes;
 }

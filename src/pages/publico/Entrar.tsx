@@ -6,7 +6,7 @@ import type { z } from 'zod';
 import { CampoFormulario } from '@/components/CampoFormulario';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { repositorios } from '@/dados/repositorios';
+import { MODO_DADOS, repositorios } from '@/dados/repositorios';
 import type { Papel } from '@/dados/tipos';
 import { useAtualizarSessao } from '@/hooks/useSessao';
 import { esquemaEntrar } from './esquemasAcesso';
@@ -60,13 +60,15 @@ export function Entrar() {
         <Link to="/cadastro" className="text-primary underline underline-offset-4">Criar conta</Link>
       </div>
 
-      <section className="space-y-2 rounded-xl border border-dashed p-3">
-        <h2 className="text-sm font-medium">Atalhos de demonstração (dados fictícios)</h2>
-        <div className="flex flex-col gap-2">
-          <Button type="button" variant="outline" onClick={() => entrarComoDemonstracao('jovem')}>Entrar como jovem</Button>
-          <Button type="button" variant="outline" onClick={() => entrarComoDemonstracao('admin')}>Entrar como administrador</Button>
-        </div>
-      </section>
+      {MODO_DADOS === 'local' && (
+        <section className="space-y-2 rounded-xl border border-dashed p-3">
+          <h2 className="text-sm font-medium">Atalhos de demonstração (dados fictícios)</h2>
+          <div className="flex flex-col gap-2">
+            <Button type="button" variant="outline" onClick={() => entrarComoDemonstracao('jovem')}>Entrar como jovem</Button>
+            <Button type="button" variant="outline" onClick={() => entrarComoDemonstracao('admin')}>Entrar como administrador</Button>
+          </div>
+        </section>
+      )}
     </main>
   );
 }

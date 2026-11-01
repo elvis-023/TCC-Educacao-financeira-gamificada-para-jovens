@@ -1,5 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { repositorios } from '@/dados/repositorios';
+import type { TipoTeste } from '@/dados/tipos';
 import { chaves } from './chaves';
 
 export const useMeusTestes = (habilitado = true) =>
@@ -12,4 +13,17 @@ export function usePreTesteConcluido(habilitado: boolean) {
     carregando: habilitado && isPending,
     concluido: Boolean(data?.some((t) => t.tipoTeste === 'pre' && t.concluidoEm !== null)),
   };
+}
+
+export function useIniciarTeste() {
+  return useMutation({ mutationFn: (tipo: TipoTeste) => repositorios.testes.iniciar(tipo) });
+}
+
+export function useResponderPergunta() {
+  const cliente = useQueryClient();
+  return useMutation({
+    mutationFn: ({ tipo, perguntaId, alternativa }: { tipo: TipoTeste; perguntaId: string; alternativa: number }) =>
+      repositorios.testes.responder(tipo, perguntaId, alternativa),
+    onSuccess: () => cliente.invalidateQueries({ queryKey: chaves.testes }),
+  });
 }

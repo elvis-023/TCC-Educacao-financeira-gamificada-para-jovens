@@ -1,5 +1,6 @@
 import type { Repositorios } from '../contratos';
 import { conteudoLocal } from './conteudo';
+import { notificacoesLocal } from './notificacoes';
 import { progressoLocal } from './progresso';
 import { quizLocal } from './quiz';
 import { sessaoLocal } from './sessao';
@@ -14,5 +15,6 @@ export const repositoriosLocais: Repositorios = {
   progresso: progressoLocal,
   quiz: quizLocal,
   testes: testesLocal,
+  notificacoes: notificacoesLocal,
   simulacoes: simulacoesLocal,
 };

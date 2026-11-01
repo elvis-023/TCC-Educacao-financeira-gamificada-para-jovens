@@ -2,7 +2,7 @@ import { Menu } from 'lucide-react';
 import { NavLink, Outlet, useNavigate } from 'react-router';
 import { marcarSaidaDoAdmin } from '@/app/saidaDoAdmin';
 import { Button } from '@/components/ui/button';
-import { repositorios } from '@/dados/repositorios';
+import { MODO_DADOS, repositorios } from '@/dados/repositorios';
 import { useSair } from '@/hooks/useSair';
 import { useAtualizarSessao } from '@/hooks/useSessao';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -50,7 +50,7 @@ function MenuAdmin() {
       </nav>
       <div className="mt-auto flex flex-col gap-2">
         <Button variant="outline">Ferramentas de demonstração</Button>
-        <Button variant="outline" onClick={voltarAoApp}>Voltar ao app</Button>
+        {MODO_DADOS === 'local' && <Button variant="outline" onClick={voltarAoApp}>Voltar ao app</Button>}
         <Button variant="ghost" onClick={sair}>Sair</Button>
       </div>
     </div>

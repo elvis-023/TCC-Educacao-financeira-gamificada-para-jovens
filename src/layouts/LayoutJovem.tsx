@@ -1,6 +1,7 @@
 import { BookOpen, Calculator, House, Trophy, User } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import { NavLink, Outlet } from 'react-router';
+import { NavLink, Outlet, useMatches } from 'react-router';
+import { TopoJovem } from '@/components/TopoJovem';
 import { cn } from '@/lib/utils';
 
 const itens: { para: string; rotulo: string; icone: LucideIcon }[] = [
@@ -11,10 +12,15 @@ const itens: { para: string; rotulo: string; icone: LucideIcon }[] = [
   { para: '/perfil', rotulo: 'Perfil', icone: User },
 ];
 
+interface InfoDaRota { titulo?: string; saudacao?: boolean }
+
 export function LayoutJovem() {
+  // Cada rota informa o título (ou a saudação) do topo pelo handle do React Router.
+  const info = (useMatches().at(-1)?.handle ?? {}) as InfoDaRota;
   return (
     <div className="min-h-dvh bg-muted/40">
       <div className="relative mx-auto flex min-h-dvh w-full max-w-[430px] flex-col bg-background">
+        <TopoJovem titulo={info.titulo} saudacao={info.saudacao} />
         <main id="conteudo" className="flex-1 px-4 pb-24 pt-4">
           <Outlet />
         </main>

@@ -113,7 +113,7 @@ function QuizAberto({ trilha, licao, estadoNaAbertura }: { trilha: TrilhaTipo; l
     function aoTeclar(e: KeyboardEvent) {
       const a = acoes.current;
       if (a.confirmandoSaida || e.ctrlKey || e.metaKey || e.altKey) return;
-      if ((e.target as HTMLElement).closest('[data-ignora-teclado]')) return;
+      if ((e.target as HTMLElement | null)?.closest?.('[data-ignora-teclado]')) return;
       if (e.key === 'Enter') {
         e.preventDefault();
         if (a.feedback) a.avancar();
