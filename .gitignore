@@ -30,6 +30,8 @@ Thumbs.db
 CLAUDE.md
 .claude/
 .mcp.json
+/.agents/
+/skills-lock.json
 /Prompt-PRD-Software-Funcionando-02-11-2026.txt
 /Entregas/
 /feedbackProfessor/
