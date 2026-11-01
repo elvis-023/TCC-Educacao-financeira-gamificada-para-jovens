@@ -1,3 +1,4 @@
+import { gsap, reduzMovimento } from '@/lib/animacao';
 import { CircleCheck, CircleX, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router';
@@ -108,6 +109,13 @@ function QuizAberto({ trilha, licao, estadoNaAbertura }: { trilha: TrilhaTipo; l
     setPedido((n) => n + 1);
   }
 
+  // Cada questão nova entra com as alternativas em sequência (GSAP); o resto da tela fica parado.
+  const questaoId = questao?.id;
+  useEffect(() => {
+    if (!questaoId || reduzMovimento()) return;
+    gsap.fromTo('[data-alternativa]', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.07, ease: 'power2.out', clearProps: 'opacity,transform' });
+  }, [questaoId]);
+
   // Teclado (PRD 5.6): 1 a 4 escolhem; Enter confirma e, depois do feedback, avança.
   const acoes = useRef({ confirmar, avancar, feedback, questao, confirmandoSaida });
   useEffect(() => {
@@ -166,14 +174,16 @@ function QuizAberto({ trilha, licao, estadoNaAbertura }: { trilha: TrilhaTipo; l
         </div>
       ) : (
         <section className="space-y-4">
-          <EtiquetaNivel nivel={questao.nivelDificuldade} />
-          <h2 className="text-xl font-semibold leading-snug">{questao.enunciado}</h2>
+          <div className="fundo-hero space-y-3 rounded-3xl p-5">
+            <EtiquetaNivel nivel={questao.nivelDificuldade} />
+            <h2 className="text-xl font-semibold leading-snug">{questao.enunciado}</h2>
+          </div>
           <ul className="space-y-2">
             {questao.alternativas.map((texto, i) => {
               const correta = resultado?.respostaCorreta === i;
               const marcada = feedback?.escolhida === i;
               const estilo = !feedback
-                ? escolha === i ? 'border-primary bg-primary/10' : 'hover:bg-muted/50'
+                ? escolha === i ? 'border-primary bg-primary/10' : 'border-transparent bg-card ring-1 ring-foreground/10 hover:bg-secondary'
                 : correta ? 'border-acerto bg-acerto-fundo' : marcada ? 'border-erro bg-erro-fundo' : 'opacity-70';
               return (
                 <li key={i}>
@@ -182,9 +192,10 @@ function QuizAberto({ trilha, licao, estadoNaAbertura }: { trilha: TrilhaTipo; l
                     aria-pressed={feedback ? marcada : escolha === i}
                     disabled={Boolean(feedback)}
                     onClick={() => setEscolha(i)}
-                    className={`flex min-h-12 w-full items-start gap-3 rounded-xl border-2 p-3 text-left ${estilo}`}
+                    data-alternativa
+                    className={`flex min-h-14 w-full items-start gap-3 rounded-2xl border-2 p-3 text-left ${estilo}`}
                   >
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full border text-sm font-medium">{LETRAS[i]}</span>
+                    <span className={`flex size-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${!feedback && escolha === i ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'}`}>{LETRAS[i]}</span>
                     <span className="flex-1 pt-0.5">{texto}</span>
                     {feedback && (correta || marcada) && (
                       <span className={`inline-flex shrink-0 items-center gap-1 pt-0.5 text-sm font-medium ${correta ? 'text-acerto' : 'text-erro'}`}>
@@ -230,7 +241,7 @@ function QuizAberto({ trilha, licao, estadoNaAbertura }: { trilha: TrilhaTipo; l
         )}
       </div>
 
-      <div className="fixed bottom-0 left-1/2 z-10 w-full max-w-[430px] -translate-x-1/2 border-t bg-background p-4">
+      <div className="fixed bottom-0 left-1/2 z-10 w-full max-w-[430px] -translate-x-1/2 bg-background/90 p-4 backdrop-blur">
         {feedback ? (
           <Button className="w-full" size="lg" onClick={avancar}>
             {feedback.resultado.quizConcluido ? 'Ver resultado' : 'Próxima questão'}

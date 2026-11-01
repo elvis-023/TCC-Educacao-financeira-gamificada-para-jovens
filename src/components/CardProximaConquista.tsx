@@ -25,7 +25,7 @@ export function CardProximaConquista() {
             <>
               <span className="flex items-center gap-2 font-medium"><IconeConquista nome={proxima.badge.icone} className="size-5 text-muted-foreground" />{proxima.badge.nome}</span>
               <span className="block text-sm text-muted-foreground">{proxima.badge.criterioMarco}</span>
-              <span className="block text-sm font-medium tabular-nums">{proxima.progresso}</span>
+              {proxima.progresso && <span className="block text-sm font-medium tabular-nums">{proxima.progresso}</span>}
             </>
           ) : (
             <>

@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { toast } from 'sonner';
 import { MENSAGEM_TRILHA_OFFLINE } from '@/components/AvisoSemInternet';
 import { useTrilhaIndisponivel } from '@/hooks/useConexao';
+import { guardarElementosCompartilhados } from '@/lib/animacao';
 
 type Props = Omit<ComponentProps<typeof Link>, 'to'> & { trilhaId: string; slug: string };
 
@@ -19,6 +20,7 @@ export function LinkTrilha({ trilhaId, slug, onClick, ...props }: Props) {
           toast(MENSAGEM_TRILHA_OFFLINE, { id: 'trilha-offline' });
           return;
         }
+        guardarElementosCompartilhados(`trilha-${trilhaId}`);
         onClick?.(evento);
       }}
     />
