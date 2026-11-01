@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import type { z } from 'zod';
+import { CabecalhoAcesso } from '@/components/CabecalhoAcesso';
 import { CampoFormulario } from '@/components/CampoFormulario';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -40,7 +41,7 @@ export function Entrar() {
 
   return (
     <main className="space-y-5 py-6">
-      <h1 className="text-2xl font-semibold">Entrar</h1>
+      <CabecalhoAcesso titulo="Entrar" texto="Bom ver você de novo. Continue de onde parou." />
 
       <form onSubmit={handleSubmit(entrar)} noValidate className="space-y-4">
         <CampoFormulario id="email" rotulo="E-mail" erro={errors.email?.message}>

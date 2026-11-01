@@ -5,6 +5,7 @@ import { Controller, useForm, useWatch } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import type { z } from 'zod';
+import { CabecalhoAcesso } from '@/components/CabecalhoAcesso';
 import { CampoFormulario } from '@/components/CampoFormulario';
 import { ModalTermo } from '@/components/ModalTermo';
 import { Button } from '@/components/ui/button';
@@ -56,7 +57,7 @@ export function Cadastro() {
 
   return (
     <main className="space-y-5 py-6">
-      <h1 className="text-2xl font-semibold">Criar conta</h1>
+      <CabecalhoAcesso titulo="Criar conta" texto="Leva menos de um minuto. Só pedimos o que a pesquisa precisa." />
 
       <form onSubmit={handleSubmit(criarConta)} noValidate className="space-y-4">
         <CampoFormulario id="nome" rotulo="Nome" erro={errors.nome?.message}>

@@ -68,27 +68,27 @@ export function Perfil() {
     <section className="space-y-5">
       <h1 className="sr-only">Perfil</h1>
 
-      <header className="flex items-center gap-4">
-        <span aria-hidden="true" className="flex size-16 shrink-0 items-center justify-center rounded-full bg-primary text-xl font-semibold text-primary-foreground">
+      <header className="fundo-hero flex items-center gap-4 rounded-3xl p-5">
+        <span aria-hidden="true" className="flex size-16 shrink-0 items-center justify-center rounded-full bg-destaque font-heading text-xl font-semibold text-destaque-foreground">
           {iniciais(u.nome)}
         </span>
         <div className="min-w-0">
-          <p className="truncate text-lg font-semibold">{u.nome}</p>
-          <p className="truncate text-sm text-muted-foreground">{u.email}</p>
-          <p className="text-sm text-muted-foreground tabular-nums">No app desde {formatarData(u.criadoEm)}</p>
+          <p className="truncate font-heading text-lg font-semibold">{u.nome}</p>
+          <p className="truncate text-sm opacity-90">{u.email}</p>
+          <p className="text-sm tabular-nums opacity-90">No app desde {formatarData(u.criadoEm)}</p>
         </div>
       </header>
 
       <div className="grid grid-cols-3 gap-2 text-center">
-        <div className="rounded-xl border p-3">
+        <div className="rounded-3xl bg-card p-3 shadow-xs ring-1 ring-foreground/10">
           <Sparkles aria-hidden="true" className="mx-auto size-5 text-xp-icone" />
           <p className="font-semibold text-xp tabular-nums">{formatarXp(u.xpTotal)}</p>
         </div>
-        <div className="rounded-xl border p-3">
+        <div className="rounded-3xl bg-card p-3 shadow-xs ring-1 ring-foreground/10">
           <Flame aria-hidden="true" className="mx-auto size-5 text-sequencia-icone" />
           <p className="font-semibold text-sequencia tabular-nums">{sequencia} {sequencia === 1 ? 'dia' : 'dias'}</p>
         </div>
-        <Link to="/conquistas" className="rounded-xl border p-3 focus-visible:outline-2 focus-visible:outline-ring">
+        <Link to="/conquistas" className="rounded-3xl bg-card p-3 shadow-xs ring-1 ring-foreground/10 focus-visible:outline-2 focus-visible:outline-ring">
           <span className="block font-semibold tabular-nums">{conquistas.data?.length ?? 0} de {badges.data?.length ?? 6}</span>
           <span className="block text-sm text-muted-foreground">Ver conquistas</span>
         </Link>
@@ -96,7 +96,7 @@ export function Perfil() {
 
       <ResumoTestes />
 
-      <section className="space-y-3 rounded-xl border p-4" aria-labelledby="preferencias">
+      <section className="space-y-3 rounded-3xl bg-card p-5 shadow-xs ring-1 ring-foreground/10" aria-labelledby="preferencias">
         <h2 id="preferencias" className="font-semibold">Preferências</h2>
         <div className="flex min-h-11 items-center justify-between gap-3">
           <Label htmlFor="lembretes">Receber lembretes</Label>
@@ -108,7 +108,7 @@ export function Perfil() {
         </div>
       </section>
 
-      <section className="space-y-2 rounded-xl border p-4" aria-labelledby="termos">
+      <section className="space-y-2 rounded-3xl bg-card p-5 shadow-xs ring-1 ring-foreground/10" aria-labelledby="termos">
         <h2 id="termos" className="font-semibold">Termos</h2>
         <div className="flex flex-col gap-2">
           <Button variant="outline" onClick={() => setTermo(TCLE)}>Ler o TCLE</Button>

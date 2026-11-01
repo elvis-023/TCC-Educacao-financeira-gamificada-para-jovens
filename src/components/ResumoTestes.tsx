@@ -10,10 +10,10 @@ const notaTexto = (nota: number) => `${nota} de ${TOTAL_PERGUNTAS} (${formatarPe
 /** "Meus testes" do Perfil (PRD 2.11): teste inicial e teste final, nunca quais perguntas foram acertadas. */
 export function ResumoTestes() {
   const { carregando, estado, trilhasConcluidas, pre, pos } = useEstadoTesteFinal();
-  if (carregando) return <Skeleton className="h-28 w-full rounded-xl" />;
+  if (carregando) return <Skeleton className="h-28 w-full rounded-3xl" />;
 
   return (
-    <section className="space-y-3 rounded-xl border p-4" aria-labelledby="meus-testes">
+    <section className="space-y-3 rounded-3xl bg-card p-5 shadow-xs ring-1 ring-foreground/10" aria-labelledby="meus-testes">
       <h2 id="meus-testes" className="font-semibold">Meus testes</h2>
       <div>
         <p className="text-sm text-muted-foreground">Teste inicial</p>

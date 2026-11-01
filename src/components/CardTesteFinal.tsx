@@ -11,7 +11,7 @@ import { diferencaPp, TOTAL_PERGUNTAS } from '@/regras/pesquisa';
 /** 5º card do Início (PRD T07): teste final bloqueado, liberado ou concluído. */
 export function CardTesteFinal() {
   const { carregando, estado, trilhasConcluidas, pre, pos } = useEstadoTesteFinal();
-  if (carregando) return <Skeleton className="h-32 w-full rounded-xl" />;
+  if (carregando) return <Skeleton className="h-32 w-full rounded-3xl" />;
 
   return (
     <Card>

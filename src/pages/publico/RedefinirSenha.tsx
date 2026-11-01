@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import { z } from 'zod';
+import { CabecalhoAcesso } from '@/components/CabecalhoAcesso';
 import { CampoFormulario } from '@/components/CampoFormulario';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,7 +26,7 @@ export function RedefinirSenha() {
   if (MODO_DADOS === 'local') {
     return (
       <main className="mx-auto min-h-dvh max-w-[430px] space-y-4 p-4 py-6">
-        <h1 className="text-2xl font-semibold">Redefinir senha</h1>
+        <CabecalhoAcesso titulo="Redefinir senha" texto="Esta função depende da base de dados." />
         <p className="text-muted-foreground">A redefinição de senha funciona só com a base de dados.</p>
         <Link to="/entrar" className="text-primary underline underline-offset-4">Voltar para o login</Link>
       </main>
@@ -46,7 +47,7 @@ export function RedefinirSenha() {
 
   return (
     <main className="mx-auto min-h-dvh max-w-[430px] space-y-5 p-4 py-6">
-      <h1 className="text-2xl font-semibold">Criar nova senha</h1>
+      <CabecalhoAcesso titulo="Criar nova senha" texto="Escolha uma senha com pelo menos 8 caracteres." />
       <form onSubmit={handleSubmit(redefinir)} noValidate className="space-y-4">
         <CampoFormulario id="senha" rotulo="Nova senha" erro={errors.senha?.message} ajuda="No mínimo 8 caracteres.">
           {(p) => <Input {...p} type="password" autoComplete="new-password" {...register('senha')} />}
