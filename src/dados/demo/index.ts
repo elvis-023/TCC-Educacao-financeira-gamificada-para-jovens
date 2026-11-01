@@ -3,10 +3,11 @@ import { criarHistoricoDoAlex } from './historico';
 import { criarNotificacoes } from './notificacoes';
 import { criarParametros } from './parametros';
 import { criarPesquisa } from './pesquisa';
+import { QUESTOES } from './questoes';
 import { criarUsuarios } from './usuarios';
 
 /** Aumente quando os dados de demonstração mudarem: o banco do aparelho é recriado. */
-export const VERSAO_DADOS = 1;
+export const VERSAO_DADOS = 2;
 
 export function criarDadosDemo(agora: Date): BancoDados {
   const historico = criarHistoricoDoAlex(agora);
@@ -15,7 +16,7 @@ export function criarDadosDemo(agora: Date): BancoDados {
     versao: VERSAO_DADOS,
     usuarios: criarUsuarios(agora),
     pseudonimos: pesquisa.pseudonimos,
-    questoes: [], // o passo 9 troca por QUESTOES
+    questoes: structuredClone(QUESTOES),
     respostasQuiz: historico.respostasQuiz,
     progressos: historico.progressos,
     simulacoes: [],

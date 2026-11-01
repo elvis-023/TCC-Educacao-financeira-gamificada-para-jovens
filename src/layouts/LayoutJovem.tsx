@@ -1,6 +1,11 @@
 import { BookOpen, Calculator, House, Trophy, User } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import { NavLink, Outlet } from 'react-router';
+import { NavLink, Outlet, useMatches } from 'react-router';
+import { BannerOffline } from '@/components/BannerOffline';
+import { TopoJovem } from '@/components/TopoJovem';
+import { useFocoNoTitulo } from '@/hooks/useFocoNoTitulo';
+import { useSincronizacao } from '@/hooks/useSincronizacao';
+import { useVerificadorDeLembretes } from '@/hooks/useVerificadorDeLembretes';
 import { cn } from '@/lib/utils';
 
 const itens: { para: string; rotulo: string; icone: LucideIcon }[] = [
@@ -11,10 +16,21 @@ const itens: { para: string; rotulo: string; icone: LucideIcon }[] = [
   { para: '/perfil', rotulo: 'Perfil', icone: User },
 ];
 
+interface InfoDaRota { titulo?: string; saudacao?: boolean }
+
 export function LayoutJovem() {
+  // Cada rota informa o título (ou a saudação) do topo pelo handle do React Router.
+  const info = (useMatches().at(-1)?.handle ?? {}) as InfoDaRota;
+  useSincronizacao();
+  useFocoNoTitulo();
+  useVerificadorDeLembretes();
   return (
     <div className="min-h-dvh bg-muted/40">
       <div className="relative mx-auto flex min-h-dvh w-full max-w-[430px] flex-col bg-background">
+        <div className="sticky top-0 z-20">
+          <BannerOffline />
+          <TopoJovem titulo={info.titulo} saudacao={info.saudacao} />
+        </div>
         <main id="conteudo" className="flex-1 px-4 pb-24 pt-4">
           <Outlet />
         </main>

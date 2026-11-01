@@ -1,58 +1,93 @@
 import { createBrowserRouter } from 'react-router';
+import { RotaAdmin, RotaJovem, RotaVisitante } from '@/app/guardas';
 import { LayoutAdmin } from '@/layouts/LayoutAdmin';
 import { LayoutFoco } from '@/layouts/LayoutFoco';
 import { LayoutJovem } from '@/layouts/LayoutJovem';
 import { LayoutPublico } from '@/layouts/LayoutPublico';
-import { Inicio } from '@/pages/jovem/Inicio';
+import { ErroInesperado } from '@/pages/ErroInesperado';
 import { NaoEncontrada } from '@/pages/NaoEncontrada';
-import { TelaProvisoria } from '@/pages/TelaProvisoria';
-
-const provisoria = (titulo: string) => <TelaProvisoria titulo={titulo} />;
+import { Conquistas } from '@/pages/jovem/Conquistas';
+import { Inicio } from '@/pages/jovem/Inicio';
+import { Licao } from '@/pages/jovem/Licao';
+import { Notificacoes } from '@/pages/jovem/Notificacoes';
+import { Perfil } from '@/pages/jovem/Perfil';
+import { PosTeste } from '@/pages/jovem/PosTeste';
+import { PreTeste } from '@/pages/jovem/PreTeste';
+import { Quiz } from '@/pages/jovem/Quiz';
+import { Ranking } from '@/pages/jovem/Ranking';
+import { ResultadoQuiz } from '@/pages/jovem/ResultadoQuiz';
+import { Trilha } from '@/pages/jovem/Trilha';
+import { Trilhas } from '@/pages/jovem/Trilhas';
+import { BoasVindas } from '@/pages/publico/BoasVindas';
+import { Cadastro } from '@/pages/publico/Cadastro';
+import { EsqueciSenha } from '@/pages/publico/EsqueciSenha';
+import { Entrar } from '@/pages/publico/Entrar';
+import { RedefinirSenha } from '@/pages/publico/RedefinirSenha';
 
 export const roteador = createBrowserRouter([
   {
-    element: <LayoutPublico />,
+    element: <RotaVisitante />,
+    errorElement: <ErroInesperado />,
     children: [
-      { path: '/', element: provisoria('T01 Boas-vindas') },
-      { path: '/cadastro', element: provisoria('T02 Cadastro') },
-      { path: '/entrar', element: provisoria('T03 Login') },
-      { path: '/esqueci-senha', element: provisoria('T04 Esqueci minha senha') },
+      {
+        element: <LayoutPublico />,
+        children: [
+          { path: '/', element: <BoasVindas /> },
+          { path: '/cadastro', element: <Cadastro /> },
+          { path: '/entrar', element: <Entrar /> },
+          { path: '/esqueci-senha', element: <EsqueciSenha /> },
+        ],
+      },
     ],
   },
   {
-    element: <LayoutFoco />,
+    element: <RotaJovem />,
+    errorElement: <ErroInesperado />,
     children: [
-      { path: '/pre-teste', element: provisoria('T05 Pré-teste') },
-      { path: '/pos-teste', element: provisoria('T06 Pós-teste') },
-      { path: '/trilhas/:trilha/licoes/:licao', element: provisoria('T10 Lição') },
-      { path: '/trilhas/:trilha/licoes/:licao/quiz', element: provisoria('T11 Quiz') },
-      { path: '/trilhas/:trilha/licoes/:licao/resultado', element: provisoria('T12 Resultado do quiz') },
-    ],
-  },
-  {
-    element: <LayoutJovem />,
-    children: [
-      { path: '/inicio', element: <Inicio /> },
-      { path: '/trilhas', element: provisoria('T08 Trilhas') },
-      { path: '/trilhas/:trilha', element: provisoria('T09 Trilha') },
-      { path: '/simuladores', lazy: async () => ({ Component: (await import('@/pages/jovem/Simuladores')).Simuladores }) },
-      { path: '/simuladores/juros-compostos', lazy: async () => ({ Component: (await import('@/pages/jovem/JurosCompostos')).JurosCompostos }) },
-      { path: '/simuladores/cartao-de-credito', lazy: async () => ({ Component: (await import('@/pages/jovem/FaturaCartao')).FaturaCartao }) },
-      { path: '/ranking', element: provisoria('T16 Ranking') },
-      { path: '/conquistas', element: provisoria('T17 Conquistas') },
-      { path: '/notificacoes', element: provisoria('T18 Notificações') },
-      { path: '/perfil', element: provisoria('T19 Perfil') },
+      {
+        element: <LayoutFoco />,
+        children: [
+          { path: '/pre-teste', element: <PreTeste /> },
+          { path: '/pos-teste', element: <PosTeste /> },
+          { path: '/trilhas/:trilha/licoes/:licao', element: <Licao /> },
+          { path: '/trilhas/:trilha/licoes/:licao/quiz', element: <Quiz /> },
+          { path: '/trilhas/:trilha/licoes/:licao/resultado', element: <ResultadoQuiz /> },
+        ],
+      },
+      {
+        element: <LayoutJovem />,
+        children: [
+          { path: '/inicio', element: <Inicio />, handle: { saudacao: true } },
+          { path: '/trilhas', element: <Trilhas />, handle: { titulo: 'Trilhas' } },
+          { path: '/trilhas/:trilha', element: <Trilha />, handle: { titulo: 'Trilha' } },
+          { path: '/simuladores', handle: { titulo: 'Simuladores' }, lazy: async () => ({ Component: (await import('@/pages/jovem/Simuladores')).Simuladores }) },
+          { path: '/simuladores/juros-compostos', handle: { titulo: 'Juros compostos' }, lazy: async () => ({ Component: (await import('@/pages/jovem/JurosCompostos')).JurosCompostos }) },
+          { path: '/simuladores/cartao-de-credito', handle: { titulo: 'Fatura do cartão' }, lazy: async () => ({ Component: (await import('@/pages/jovem/FaturaCartao')).FaturaCartao }) },
+          { path: '/ranking', element: <Ranking />, handle: { titulo: 'Ranking' } },
+          { path: '/conquistas', element: <Conquistas />, handle: { titulo: 'Conquistas' } },
+          { path: '/notificacoes', element: <Notificacoes />, handle: { titulo: 'Notificações' } },
+          { path: '/perfil', element: <Perfil />, handle: { titulo: 'Perfil' } },
+        ],
+      },
     ],
   },
   {
     path: '/admin',
-    element: <LayoutAdmin />,
+    element: <RotaAdmin />,
+    errorElement: <ErroInesperado />,
     children: [
-      { index: true, element: provisoria('T20 Visão geral') },
-      { path: 'questoes', element: provisoria('T21 Banco de questões') },
-      { path: 'parametros', element: provisoria('T22 Parâmetros') },
-      { path: 'exportar', element: provisoria('T23 Exportar dados') },
+      {
+        element: <LayoutAdmin />,
+        children: [
+          { index: true, handle: { titulo: 'Visão geral' }, lazy: async () => ({ Component: (await import('@/pages/admin/VisaoGeral')).VisaoGeral }) },
+          { path: 'questoes', handle: { titulo: 'Banco de questões' }, lazy: async () => ({ Component: (await import('@/pages/admin/BancoQuestoes')).BancoQuestoes }) },
+          { path: 'parametros', handle: { titulo: 'Parâmetros' }, lazy: async () => ({ Component: (await import('@/pages/admin/Parametros')).Parametros }) },
+          { path: 'exportar', handle: { titulo: 'Exportar dados' }, lazy: async () => ({ Component: (await import('@/pages/admin/ExportarDados')).ExportarDados }) },
+        ],
+      },
     ],
   },
+  // Fora das regras de acesso: o link do e-mail de recuperação abre uma sessão de recuperação.
+  { path: '/redefinir-senha', element: <RedefinirSenha /> },
   { path: '*', element: <NaoEncontrada /> },
 ]);
