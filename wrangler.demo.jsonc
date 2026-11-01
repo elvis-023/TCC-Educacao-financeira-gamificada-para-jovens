@@ -5,5 +5,7 @@
   "assets": {
     "directory": "./dist-demo",
     "not_found_handling": "single-page-application"
-  }
+  },
+  // Exigido pelo build de PR da Cloudflare (`wrangler preview`); vazio, o preview usa a mesma configuração do Worker.
+  "previews": {}
 }
