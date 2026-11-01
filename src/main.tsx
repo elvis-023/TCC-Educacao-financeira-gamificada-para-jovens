@@ -9,6 +9,7 @@ import { clienteConsultas } from '@/app/consultas';
 import { armazenamentoOk, carregarBanco } from '@/dados/bancoLocal';
 import { roteador } from '@/app/rotas';
 import { Notificador } from '@/components/Notificador';
+import { ProvedorSessao } from '@/hooks/ProvedorSessao';
 import { aplicarTema, lerTema } from '@/lib/tema';
 
 aplicarTema(lerTema());
@@ -16,7 +17,9 @@ aplicarTema(lerTema());
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={clienteConsultas}>
-      <RouterProvider router={roteador} />
+      <ProvedorSessao>
+        <RouterProvider router={roteador} />
+      </ProvedorSessao>
       <Notificador />
     </QueryClientProvider>
   </StrictMode>,

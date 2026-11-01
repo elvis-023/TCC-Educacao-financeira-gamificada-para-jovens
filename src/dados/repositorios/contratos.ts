@@ -1,10 +1,25 @@
-import type { Badge, Licao, Quiz, Simulacao, Trilha } from '@/dados/tipos';
+import type { Badge, Licao, Papel, Quiz, ResumoTeste, Sessao, Simulacao, Trilha } from '@/dados/tipos';
 
+export interface DadosCadastro { nome: string; email: string; senha: string; tcleVersao: string }
+
+export interface RepositorioSessao {
+  sessaoAtual(): Promise<Sessao | null>;
+  observar(aoMudar: () => void): () => void;
+  cadastrar(dados: DadosCadastro): Promise<void>;
+  entrar(email: string, senha: string): Promise<void>;
+  entrarDemonstracao(papel: Papel): Promise<void>; // só no modo local
+  sair(): Promise<void>;
+  pedirNovaSenha(email: string): Promise<void>;
+  definirNovaSenha(senha: string): Promise<void>; // só no modo Supabase
+}
 export interface RepositorioConteudo {
   listarTrilhas(): Promise<Trilha[]>;
   listarLicoes(): Promise<Licao[]>;
   listarQuizzes(): Promise<Quiz[]>;
   listarBadges(): Promise<Badge[]>;
+}
+export interface RepositorioTestes {
+  meusTestes(): Promise<ResumoTeste[]>;
 }
 export interface RepositorioSimulacoes {
   minhasSimulacoes(): Promise<Simulacao[]>;
@@ -12,6 +27,8 @@ export interface RepositorioSimulacoes {
 }
 
 export interface Repositorios {
+  sessao: RepositorioSessao;
   conteudo: RepositorioConteudo;
+  testes: RepositorioTestes;
   simulacoes: RepositorioSimulacoes;
 }

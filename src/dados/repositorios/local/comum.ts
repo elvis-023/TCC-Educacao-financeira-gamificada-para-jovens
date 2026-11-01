@@ -1,5 +1,4 @@
 import { lerAparelho } from '@/dados/aparelho';
-import { ID_ALEX } from '@/dados/demo/usuarios';
 
 export const LATENCIA_MS = import.meta.env.MODE === 'test' ? 0 : 300;
 
@@ -9,7 +8,17 @@ export async function responder<T>(valor: T): Promise<T> {
   return structuredClone(valor);
 }
 
-/** Usuário da sessão local. Até o passo 6, o app age como o jovem de demonstração. */
+/** Usuário da sessão local. Sem sessão, o repositório recusa a operação. */
 export function usuarioDaSessao(): string {
-  return lerAparelho().sessaoUsuarioId ?? ID_ALEX;
+  const id = lerAparelho().sessaoUsuarioId;
+  if (!id) throw new Error('Sua sessão expirou. Entre de novo.');
+  return id;
+}
+
+/** Pseudônimo local: "P-" + 4 caracteres hexadecimais, sem repetir (PRD 2.1). */
+export function gerarPseudonimoLocal(existentes: string[]): string {
+  for (;;) {
+    const candidato = `P-${Math.floor(Math.random() * 0x10000).toString(16).toUpperCase().padStart(4, '0')}`;
+    if (!existentes.includes(candidato)) return candidato;
+  }
 }

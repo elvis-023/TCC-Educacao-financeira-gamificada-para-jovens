@@ -1,6 +1,10 @@
 import { Menu } from 'lucide-react';
-import { NavLink, Outlet } from 'react-router';
+import { NavLink, Outlet, useNavigate } from 'react-router';
+import { marcarSaidaDoAdmin } from '@/app/saidaDoAdmin';
 import { Button } from '@/components/ui/button';
+import { repositorios } from '@/dados/repositorios';
+import { useSair } from '@/hooks/useSair';
+import { useAtualizarSessao } from '@/hooks/useSessao';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
@@ -12,6 +16,18 @@ const itens = [
 ];
 
 function MenuAdmin() {
+  const navigate = useNavigate();
+  const sair = useSair();
+  const atualizarSessao = useAtualizarSessao();
+
+  // Voltar ao app: o administrador usa o jovem de demonstração nesta etapa (PRD 3).
+  async function voltarAoApp() {
+    marcarSaidaDoAdmin();
+    await repositorios.sessao.entrarDemonstracao('jovem');
+    await atualizarSessao();
+    navigate('/inicio');
+  }
+
   return (
     <div className="flex h-full flex-col gap-4 p-4">
       <p className="font-semibold">Educação Financeira Gamificada</p>
@@ -34,8 +50,8 @@ function MenuAdmin() {
       </nav>
       <div className="mt-auto flex flex-col gap-2">
         <Button variant="outline">Ferramentas de demonstração</Button>
-        <Button variant="outline">Voltar ao app</Button>
-        <Button variant="ghost">Sair</Button>
+        <Button variant="outline" onClick={voltarAoApp}>Voltar ao app</Button>
+        <Button variant="ghost" onClick={sair}>Sair</Button>
       </div>
     </div>
   );
