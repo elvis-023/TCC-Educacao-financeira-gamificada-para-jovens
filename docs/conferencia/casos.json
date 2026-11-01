@@ -1,0 +1,926 @@
+{
+ "juros": [
+  {
+   "valorInicial": 1000,
+   "aporteMensal": 100,
+   "taxaPercentual": 1,
+   "unidadeTaxa": "mes",
+   "prazo": 12,
+   "unidadePrazo": "meses",
+   "esperado": "2395.075331451666927273211000"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 200,
+   "taxaPercentual": 0,
+   "unidadeTaxa": "mes",
+   "prazo": 24,
+   "unidadePrazo": "meses",
+   "esperado": "4800"
+  },
+  {
+   "valorInicial": 5000,
+   "aporteMensal": 0,
+   "taxaPercentual": 13.65,
+   "unidadeTaxa": "ano",
+   "prazo": 5,
+   "unidadePrazo": "anos",
+   "esperado": "9480.1935619566551562499999999999999999999999999851"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 2653.52,
+   "taxaPercentual": 14.32,
+   "unidadeTaxa": "ano",
+   "prazo": 18,
+   "unidadePrazo": "anos",
+   "esperado": "2395006.8264054315295630164238664339001708978520426"
+  },
+  {
+   "valorInicial": 38850.97,
+   "aporteMensal": 2255.57,
+   "taxaPercentual": 0.8,
+   "unidadeTaxa": "mes",
+   "prazo": 315,
+   "unidadePrazo": "meses",
+   "esperado": "3665336.2624800106285245373673436430665807733659514"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 1354.47,
+   "taxaPercentual": 12.55,
+   "unidadeTaxa": "ano",
+   "prazo": 7,
+   "unidadePrazo": "anos",
+   "esperado": "176173.51341787054390444559640985075375993056157430"
+  },
+  {
+   "valorInicial": 17448.13,
+   "aporteMensal": 0,
+   "taxaPercentual": 13.29,
+   "unidadeTaxa": "ano",
+   "prazo": 3,
+   "unidadePrazo": "anos",
+   "esperado": "25370.184102207829570000000000000000000000000000000"
+  },
+  {
+   "valorInicial": 14676.88,
+   "aporteMensal": 431.26,
+   "taxaPercentual": 0.17,
+   "unidadeTaxa": "mes",
+   "prazo": 189,
+   "unidadePrazo": "meses",
+   "esperado": "116262.41123928255826314496967393567171731759576237"
+  },
+  {
+   "valorInicial": 21168.65,
+   "aporteMensal": 2674.0,
+   "taxaPercentual": 15.74,
+   "unidadeTaxa": "ano",
+   "prazo": 14,
+   "unidadePrazo": "anos",
+   "esperado": "1634508.6357734815337875902771542266355036215846569"
+  },
+  {
+   "valorInicial": 37532.32,
+   "aporteMensal": 1200.46,
+   "taxaPercentual": 2.55,
+   "unidadeTaxa": "mes",
+   "prazo": 289,
+   "unidadePrazo": "meses",
+   "esperado": "122365093.97479540401976555248196642744037251437302"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 0,
+   "taxaPercentual": 2.47,
+   "unidadeTaxa": "mes",
+   "prazo": 268,
+   "unidadePrazo": "meses",
+   "esperado": "0E-1072"
+  },
+  {
+   "valorInicial": 5218.56,
+   "aporteMensal": 1415.42,
+   "taxaPercentual": 2.66,
+   "unidadeTaxa": "mes",
+   "prazo": 63,
+   "unidadePrazo": "meses",
+   "esperado": "252220.38629527409290888835022749923249151975662334"
+  },
+  {
+   "valorInicial": 22894.14,
+   "aporteMensal": 2146.42,
+   "taxaPercentual": 1.72,
+   "unidadeTaxa": "mes",
+   "prazo": 343,
+   "unidadePrazo": "meses",
+   "esperado": "51128043.395759907087300503637396235849152445907483"
+  },
+  {
+   "valorInicial": 27452.61,
+   "aporteMensal": 2416.63,
+   "taxaPercentual": 1.36,
+   "unidadeTaxa": "mes",
+   "prazo": 151,
+   "unidadePrazo": "meses",
+   "esperado": "1399627.0181730576562886256894595079617279871866612"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 1970.37,
+   "taxaPercentual": 2.43,
+   "unidadeTaxa": "mes",
+   "prazo": 251,
+   "unidadePrazo": "meses",
+   "esperado": "33505191.769549450709626773046166515883106596602014"
+  },
+  {
+   "valorInicial": 10071.89,
+   "aporteMensal": 1405.3,
+   "taxaPercentual": 14.74,
+   "unidadeTaxa": "ano",
+   "prazo": 18,
+   "unidadePrazo": "anos",
+   "esperado": "1446592.3137791613618703562091281409439669731503556"
+  },
+  {
+   "valorInicial": 1777.64,
+   "aporteMensal": 0,
+   "taxaPercentual": 1.37,
+   "unidadeTaxa": "mes",
+   "prazo": 264,
+   "unidadePrazo": "meses",
+   "esperado": "64556.159903342160718858245842500793647752396890402"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 2902.13,
+   "taxaPercentual": 16.98,
+   "unidadeTaxa": "ano",
+   "prazo": 21,
+   "unidadePrazo": "anos",
+   "esperado": "5721823.0682335099841379813350827649842640122947461"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 591.81,
+   "taxaPercentual": 3.49,
+   "unidadeTaxa": "ano",
+   "prazo": 30,
+   "unidadePrazo": "anos",
+   "esperado": "371825.39949257804008835155199262044413798738108710"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 0,
+   "taxaPercentual": 5.21,
+   "unidadeTaxa": "ano",
+   "prazo": 20,
+   "unidadePrazo": "anos",
+   "esperado": "0E-11760"
+  },
+  {
+   "valorInicial": 27367.79,
+   "aporteMensal": 2008.75,
+   "taxaPercentual": 3.63,
+   "unidadeTaxa": "ano",
+   "prazo": 11,
+   "unidadePrazo": "anos",
+   "esperado": "364705.64047487400140225263034610002511955417467322"
+  },
+  {
+   "valorInicial": 28756.75,
+   "aporteMensal": 0,
+   "taxaPercentual": 1.68,
+   "unidadeTaxa": "mes",
+   "prazo": 243,
+   "unidadePrazo": "meses",
+   "esperado": "1648069.1331557647199728938362981594866210690738669"
+  },
+  {
+   "valorInicial": 47918.05,
+   "aporteMensal": 0,
+   "taxaPercentual": 2.81,
+   "unidadeTaxa": "mes",
+   "prazo": 301,
+   "unidadePrazo": "meses",
+   "esperado": "200975093.95361569487760220595971275709468730061422"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 0,
+   "taxaPercentual": 7.39,
+   "unidadeTaxa": "ano",
+   "prazo": 4,
+   "unidadePrazo": "anos",
+   "esperado": "0E-2352"
+  },
+  {
+   "valorInicial": 3764.32,
+   "aporteMensal": 0,
+   "taxaPercentual": 1.43,
+   "unidadeTaxa": "ano",
+   "prazo": 16,
+   "unidadePrazo": "anos",
+   "esperado": "4724.4291765266553841246566728319739616590654691196"
+  },
+  {
+   "valorInicial": 15253.22,
+   "aporteMensal": 2742.73,
+   "taxaPercentual": 17.13,
+   "unidadeTaxa": "ano",
+   "prazo": 19,
+   "unidadePrazo": "anos",
+   "esperado": "4271701.5898934589090222624541842124533718438136350"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 1306.49,
+   "taxaPercentual": 1.43,
+   "unidadeTaxa": "mes",
+   "prazo": 120,
+   "unidadePrazo": "meses",
+   "esperado": "410680.28795865895937060113176846972834522373580753"
+  },
+  {
+   "valorInicial": 3568.47,
+   "aporteMensal": 0,
+   "taxaPercentual": 0.23,
+   "unidadeTaxa": "mes",
+   "prazo": 279,
+   "unidadePrazo": "meses",
+   "esperado": "6774.0565813387706830001173406860598892612261727656"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 0,
+   "taxaPercentual": 0.47,
+   "unidadeTaxa": "mes",
+   "prazo": 272,
+   "unidadePrazo": "meses",
+   "esperado": "0E-1088"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 0,
+   "taxaPercentual": 7.63,
+   "unidadeTaxa": "ano",
+   "prazo": 14,
+   "unidadePrazo": "anos",
+   "esperado": "0E-8232"
+  },
+  {
+   "valorInicial": 43415.49,
+   "aporteMensal": 921.68,
+   "taxaPercentual": 0.61,
+   "unidadeTaxa": "mes",
+   "prazo": 238,
+   "unidadePrazo": "meses",
+   "esperado": "675964.26263976829983250042804692147617889923658758"
+  },
+  {
+   "valorInicial": 39034.38,
+   "aporteMensal": 0,
+   "taxaPercentual": 6.54,
+   "unidadeTaxa": "ano",
+   "prazo": 16,
+   "unidadePrazo": "anos",
+   "esperado": "107559.89382498192267388235138711135834677914343156"
+  },
+  {
+   "valorInicial": 26409.87,
+   "aporteMensal": 0,
+   "taxaPercentual": 4.93,
+   "unidadeTaxa": "ano",
+   "prazo": 3,
+   "unidadePrazo": "anos",
+   "esperado": "30511.621061808259589999999999999999999999999999974"
+  },
+  {
+   "valorInicial": 32319.39,
+   "aporteMensal": 0,
+   "taxaPercentual": 2.89,
+   "unidadeTaxa": "mes",
+   "prazo": 181,
+   "unidadePrazo": "meses",
+   "esperado": "5610562.7310149170386558223548812742079779014608995"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 337.98,
+   "taxaPercentual": 1.71,
+   "unidadeTaxa": "mes",
+   "prazo": 291,
+   "unidadePrazo": "meses",
+   "esperado": "2726347.4049241673560333757590578484063543132962878"
+  },
+  {
+   "valorInicial": 28534.77,
+   "aporteMensal": 0,
+   "taxaPercentual": 0.39,
+   "unidadeTaxa": "mes",
+   "prazo": 136,
+   "unidadePrazo": "meses",
+   "esperado": "48448.033291108547258512969245695986040747425596121"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 2056.8,
+   "taxaPercentual": 13.28,
+   "unidadeTaxa": "ano",
+   "prazo": 6,
+   "unidadePrazo": "anos",
+   "esperado": "219183.50236702699539876007574663216061368108415002"
+  },
+  {
+   "valorInicial": 5405.37,
+   "aporteMensal": 0,
+   "taxaPercentual": 0.94,
+   "unidadeTaxa": "mes",
+   "prazo": 162,
+   "unidadePrazo": "meses",
+   "esperado": "24608.213801413570708649017681447605511000299792818"
+  },
+  {
+   "valorInicial": 0,
+   "aporteMensal": 1240.81,
+   "taxaPercentual": 8.05,
+   "unidadeTaxa": "ano",
+   "prazo": 1,
+   "unidadePrazo": "anos",
+   "esperado": "15431.409603042103554492384914129624228462608890987"
+  },
+  {
+   "valorInicial": 11837.75,
+   "aporteMensal": 377.83,
+   "taxaPercentual": 6.35,
+   "unidadeTaxa": "ano",
+   "prazo": 15,
+   "unidadePrazo": "anos",
+   "esperado": "141316.83569726123152197046762028280042852677958958"
+  }
+ ],
+ "fatura": [
+  {
+   "valorFatura": 5583.12,
+   "pagamentoMinimo": 2020.46,
+   "taxaRotativoPercentual": 12.92,
+   "taxaParcelamentoPercentual": 8.44,
+   "parcelas": 12,
+   "esperado": {
+    "parcela": "546.05908027906763398234613863632514755258410391739",
+    "somaParcelas": "6552.7089633488116077881536636359017706310092470087",
+    "juros": "2990.0489633488116077881536636359017706310092470087",
+    "totalPago": "8573.1689633488116077881536636359017706310092470087",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 5587.74,
+   "pagamentoMinimo": 1886.55,
+   "taxaRotativoPercentual": 11.41,
+   "taxaParcelamentoPercentual": 6.57,
+   "parcelas": 5,
+   "esperado": {
+    "parcela": "994.13078627310209706815624610124646965140345029235",
+    "somaParcelas": "4970.6539313655104853407812305062323482570172514618",
+    "juros": "1269.4639313655104853407812305062323482570172514618",
+    "totalPago": "6857.2039313655104853407812305062323482570172514618",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 6272.23,
+   "pagamentoMinimo": 2788.13,
+   "taxaRotativoPercentual": 13.45,
+   "taxaParcelamentoPercentual": 8.43,
+   "parcelas": 14,
+   "esperado": {
+    "parcela": "491.49324985356617340475894828746458046395608672164",
+    "somaParcelas": "6880.9054979499264276666252760245041264953852141030",
+    "juros": "3396.8054979499264276666252760245041264953852141030",
+    "totalPago": "9669.0354979499264276666252760245041264953852141030",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 2839.37,
+   "pagamentoMinimo": 1211.63,
+   "taxaRotativoPercentual": 8.46,
+   "taxaParcelamentoPercentual": 6.86,
+   "parcelas": 2,
+   "esperado": {
+    "parcela": "974.55971553251079957459151116697283186696316349223",
+    "somaParcelas": "1949.1194310650215991491830223339456637339263269845",
+    "juros": "321.3794310650215991491830223339456637339263269845",
+    "totalPago": "3160.7494310650215991491830223339456637339263269845",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 2748.45,
+   "pagamentoMinimo": 638.24,
+   "taxaRotativoPercentual": 13.82,
+   "taxaParcelamentoPercentual": 7.27,
+   "parcelas": 5,
+   "esperado": {
+    "parcela": "590.02775764004392368788493238978999520138052292270",
+    "somaParcelas": "2950.1387882002196184394246619489499760069026146135",
+    "juros": "839.9287882002196184394246619489499760069026146135",
+    "totalPago": "3588.3787882002196184394246619489499760069026146135",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 2883.4,
+   "pagamentoMinimo": 768.87,
+   "taxaRotativoPercentual": 12.68,
+   "taxaParcelamentoPercentual": 1.65,
+   "parcelas": 12,
+   "esperado": {
+    "parcela": "220.48782544320802012077530130743754288359321413726",
+    "somaParcelas": "2645.8539053184962414493036156892505146031185696471",
+    "juros": "531.3239053184962414493036156892505146031185696471",
+    "totalPago": "3414.7239053184962414493036156892505146031185696471",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 2017.8,
+   "pagamentoMinimo": 247.1,
+   "taxaRotativoPercentual": 15.98,
+   "taxaParcelamentoPercentual": 2.72,
+   "parcelas": 5,
+   "esperado": {
+    "parcela": "444.84671397853162834584821991023285557098399714682",
+    "somaParcelas": "2224.2335698926581417292410995511642778549199857341",
+    "juros": "453.5335698926581417292410995511642778549199857341",
+    "totalPago": "2471.3335698926581417292410995511642778549199857341",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 1329.06,
+   "pagamentoMinimo": 199.72,
+   "taxaRotativoPercentual": 10.83,
+   "taxaParcelamentoPercentual": 6.36,
+   "parcelas": 22,
+   "esperado": {
+    "parcela": "102.66727272727272727272727272727272727272727272727",
+    "somaParcelas": "2258.6799999999999999999999999999999999999999999999",
+    "juros": "1129.3399999999999999999999999999999999999999999999",
+    "totalPago": "2458.3999999999999999999999999999999999999999999999",
+    "tetoAplicado": true
+   }
+  },
+  {
+   "valorFatura": 2929.5,
+   "pagamentoMinimo": 790.7,
+   "taxaRotativoPercentual": 9.01,
+   "taxaParcelamentoPercentual": 4.61,
+   "parcelas": 14,
+   "esperado": {
+    "parcela": "229.70149725589533123081448774579778616859494635069",
+    "somaParcelas": "3215.8209615825346372314028284411690063603292489097",
+    "juros": "1077.0209615825346372314028284411690063603292489097",
+    "totalPago": "4006.5209615825346372314028284411690063603292489097",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 2381.96,
+   "pagamentoMinimo": 639.3,
+   "taxaRotativoPercentual": 9.76,
+   "taxaParcelamentoPercentual": 2.44,
+   "parcelas": 19,
+   "esperado": {
+    "parcela": "127.00464726566693100571643390336393008773610360838",
+    "somaParcelas": "2413.0882980476716891086122441639146716669859685592",
+    "juros": "670.4282980476716891086122441639146716669859685592",
+    "totalPago": "3052.3882980476716891086122441639146716669859685592",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 547.23,
+   "pagamentoMinimo": 211.73,
+   "taxaRotativoPercentual": 12.33,
+   "taxaParcelamentoPercentual": 5.66,
+   "parcelas": 10,
+   "esperado": {
+    "parcela": "50.382549879090502158203887825569579554168415116493",
+    "somaParcelas": "503.82549879090502158203887825569579554168415116493",
+    "juros": "168.32549879090502158203887825569579554168415116493",
+    "totalPago": "715.55549879090502158203887825569579554168415116493",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 7143.46,
+   "pagamentoMinimo": 1366.56,
+   "taxaRotativoPercentual": 8.13,
+   "taxaParcelamentoPercentual": 5.56,
+   "parcelas": 15,
+   "esperado": {
+    "parcela": "624.80132634451964424153153485420001010944758371266",
+    "somaParcelas": "9372.0198951677946636229730228130001516417137556899",
+    "juros": "3595.1198951677946636229730228130001516417137556899",
+    "totalPago": "10738.579895167794663622973022813000151641713755690",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 2595.2,
+   "pagamentoMinimo": 586.25,
+   "taxaRotativoPercentual": 15.55,
+   "taxaParcelamentoPercentual": 5.95,
+   "parcelas": 7,
+   "esperado": {
+    "parcela": "415.09488758835584256634913375067957625075137960041",
+    "somaParcelas": "2905.6642131184908979644439362547570337552596572029",
+    "juros": "896.7142131184908979644439362547570337552596572029",
+    "totalPago": "3491.9142131184908979644439362547570337552596572029",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 5110.94,
+   "pagamentoMinimo": 1840.37,
+   "taxaRotativoPercentual": 15.69,
+   "taxaParcelamentoPercentual": 5.36,
+   "parcelas": 10,
+   "esperado": {
+    "parcela": "498.61260822292578903227417446197559237475238935470",
+    "somaParcelas": "4986.1260822292578903227417446197559237475238935470",
+    "juros": "1715.5560822292578903227417446197559237475238935470",
+    "totalPago": "6826.4960822292578903227417446197559237475238935470",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 3264.2,
+   "pagamentoMinimo": 1005.96,
+   "taxaRotativoPercentual": 13.94,
+   "taxaParcelamentoPercentual": 1.92,
+   "parcelas": 2,
+   "esperado": {
+    "parcela": "1323.6885228608101426307448494453248811410459587956",
+    "somaParcelas": "2647.3770457216202852614896988906497622820919175912",
+    "juros": "389.1370457216202852614896988906497622820919175912",
+    "totalPago": "3653.3370457216202852614896988906497622820919175912",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 5762.37,
+   "pagamentoMinimo": 1135.89,
+   "taxaRotativoPercentual": 8.47,
+   "taxaParcelamentoPercentual": 3.16,
+   "parcelas": 18,
+   "esperado": {
+    "parcela": "369.83075503444201749789088366332315875912982029097",
+    "somaParcelas": "6656.9535906199563149620359059398168576643367652375",
+    "juros": "2030.4735906199563149620359059398168576643367652375",
+    "totalPago": "7792.8435906199563149620359059398168576643367652375",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 7800.33,
+   "pagamentoMinimo": 3673.11,
+   "taxaRotativoPercentual": 15.25,
+   "taxaParcelamentoPercentual": 4.49,
+   "parcelas": 13,
+   "esperado": {
+    "parcela": "490.94151279608197806418291787228174862456481337129",
+    "somaParcelas": "6382.2396663490657148343779323396627321193425738268",
+    "juros": "2255.0196663490657148343779323396627321193425738268",
+    "totalPago": "10055.349666349065714834377932339662732119342573827",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 8573.7,
+   "pagamentoMinimo": 1654.77,
+   "taxaRotativoPercentual": 14.63,
+   "taxaParcelamentoPercentual": 4.08,
+   "parcelas": 8,
+   "esperado": {
+    "parcela": "1181.8939294481018490710154633162695566825629633568",
+    "somaParcelas": "9455.1514355848147925681237065301564534605037068544",
+    "juros": "2536.2214355848147925681237065301564534605037068544",
+    "totalPago": "11109.921435584814792568123706530156453460503706854",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 3560.12,
+   "pagamentoMinimo": 1010.03,
+   "taxaRotativoPercentual": 11.66,
+   "taxaParcelamentoPercentual": 7.59,
+   "parcelas": 23,
+   "esperado": {
+    "parcela": "221.74695652173913043478260869565217391304347826087",
+    "somaParcelas": "5100.1800000000000000000000000000000000000000000000",
+    "juros": "2550.0900000000000000000000000000000000000000000000",
+    "totalPago": "6110.2100000000000000000000000000000000000000000000",
+    "tetoAplicado": true
+   }
+  },
+  {
+   "valorFatura": 5351.04,
+   "pagamentoMinimo": 937.29,
+   "taxaRotativoPercentual": 13.02,
+   "taxaParcelamentoPercentual": 2.65,
+   "parcelas": 2,
+   "esperado": {
+    "parcela": "2593.7871410661547002220577350111028867505551443377",
+    "somaParcelas": "5187.5742821323094004441154700222057735011102886754",
+    "juros": "773.8242821323094004441154700222057735011102886754",
+    "totalPago": "6124.8642821323094004441154700222057735011102886754",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 8568.85,
+   "pagamentoMinimo": 3646.06,
+   "taxaRotativoPercentual": 14.68,
+   "taxaParcelamentoPercentual": 6.77,
+   "parcelas": 3,
+   "esperado": {
+    "parcela": "2142.1764491392849791838395616669499812121414268427",
+    "somaParcelas": "6426.5293474178549375515186850008499436364242805281",
+    "juros": "1503.7393474178549375515186850008499436364242805281",
+    "totalPago": "10072.589347417854937551518685000849943636424280528",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 5860.31,
+   "pagamentoMinimo": 783.42,
+   "taxaRotativoPercentual": 10.98,
+   "taxaParcelamentoPercentual": 6.98,
+   "parcelas": 6,
+   "esperado": {
+    "parcela": "1181.3295634420331384562698413988189722373871324672",
+    "somaParcelas": "7087.9773806521988307376190483929138334243227948032",
+    "juros": "2011.0873806521988307376190483929138334243227948032",
+    "totalPago": "7871.3973806521988307376190483929138334243227948032",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 6518.04,
+   "pagamentoMinimo": 914.49,
+   "taxaRotativoPercentual": 15.23,
+   "taxaParcelamentoPercentual": 5.5,
+   "parcelas": 24,
+   "esperado": {
+    "parcela": "466.9625",
+    "somaParcelas": "11207.1000",
+    "juros": "5603.5500",
+    "totalPago": "12121.5900",
+    "tetoAplicado": true
+   }
+  },
+  {
+   "valorFatura": 5366.78,
+   "pagamentoMinimo": 1765.95,
+   "taxaRotativoPercentual": 15.64,
+   "taxaParcelamentoPercentual": 4.35,
+   "parcelas": 18,
+   "esperado": {
+    "parcela": "338.35355321240289072286063171180719916053057374666",
+    "somaParcelas": "6090.3639578232520330114913708125295848895503274399",
+    "juros": "2489.5339578232520330114913708125295848895503274399",
+    "totalPago": "7856.3139578232520330114913708125295848895503274399",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 7364.81,
+   "pagamentoMinimo": 2686.0,
+   "taxaRotativoPercentual": 15.72,
+   "taxaParcelamentoPercentual": 2.29,
+   "parcelas": 6,
+   "esperado": {
+    "parcela": "976.07699456899024803470437087511196643560210082890",
+    "somaParcelas": "5856.4619674139414882082262252506717986136126049734",
+    "juros": "1177.6519674139414882082262252506717986136126049734",
+    "totalPago": "8542.4619674139414882082262252506717986136126049734",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 6673.41,
+   "pagamentoMinimo": 1557.87,
+   "taxaRotativoPercentual": 10.09,
+   "taxaParcelamentoPercentual": 1.81,
+   "parcelas": 20,
+   "esperado": {
+    "parcela": "338.13347672963776464919332055912254450780709821693",
+    "somaParcelas": "6762.6695345927552929838664111824508901561419643386",
+    "juros": "1647.1295345927552929838664111824508901561419643386",
+    "totalPago": "8320.5395345927552929838664111824508901561419643386",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 6061.71,
+   "pagamentoMinimo": 1066.32,
+   "taxaRotativoPercentual": 15.19,
+   "taxaParcelamentoPercentual": 3.71,
+   "parcelas": 11,
+   "esperado": {
+    "parcela": "646.60279577957687618521071123527085056771547433371",
+    "somaParcelas": "7112.6307535753456380373178235879793562448702176708",
+    "juros": "2117.2407535753456380373178235879793562448702176708",
+    "totalPago": "8178.9507535753456380373178235879793562448702176708",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 3407.84,
+   "pagamentoMinimo": 1666.78,
+   "taxaRotativoPercentual": 9.51,
+   "taxaParcelamentoPercentual": 7.1,
+   "parcelas": 2,
+   "esperado": {
+    "parcela": "1056.0059365084722356349589570255915016900048285853",
+    "somaParcelas": "2112.0118730169444712699179140511830033800096571706",
+    "juros": "370.9518730169444712699179140511830033800096571706",
+    "totalPago": "3778.7918730169444712699179140511830033800096571706",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 7671.59,
+   "pagamentoMinimo": 2754.97,
+   "taxaRotativoPercentual": 15.51,
+   "taxaParcelamentoPercentual": 4.17,
+   "parcelas": 19,
+   "esperado": {
+    "parcela": "438.67270672362316208377719130628276346820132639317",
+    "somaParcelas": "8334.7814277488400795917666348193725058958252014702",
+    "juros": "3418.1614277488400795917666348193725058958252014702",
+    "totalPago": "11089.751427748840079591766634819372505895825201470",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 1786.7,
+   "pagamentoMinimo": 547.58,
+   "taxaRotativoPercentual": 9.44,
+   "taxaParcelamentoPercentual": 5.54,
+   "parcelas": 7,
+   "esperado": {
+    "parcela": "238.96677972780554139091368799019225933363420112500",
+    "somaParcelas": "1672.7674580946387897363958159313458153354394078750",
+    "juros": "433.6474580946387897363958159313458153354394078750",
+    "totalPago": "2220.3474580946387897363958159313458153354394078750",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 547.24,
+   "pagamentoMinimo": 80.27,
+   "taxaRotativoPercentual": 13.34,
+   "taxaParcelamentoPercentual": 6.78,
+   "parcelas": 2,
+   "esperado": {
+    "parcela": "291.83910920108246445497630331753554502369668246445",
+    "somaParcelas": "583.67821840216492890995260663507109004739336492890",
+    "juros": "116.70821840216492890995260663507109004739336492890",
+    "totalPago": "663.94821840216492890995260663507109004739336492890",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 7624.64,
+   "pagamentoMinimo": 956.44,
+   "taxaRotativoPercentual": 10.42,
+   "taxaParcelamentoPercentual": 5.49,
+   "parcelas": 21,
+   "esperado": {
+    "parcela": "599.31131588832326290441649632177846174440833250405",
+    "somaParcelas": "12585.537633654788520992746422757347696632574982585",
+    "juros": "5917.337633654788520992746422757347696632574982585",
+    "totalPago": "13541.977633654788520992746422757347696632574982585",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 5607.16,
+   "pagamentoMinimo": 844.49,
+   "taxaRotativoPercentual": 15.88,
+   "taxaParcelamentoPercentual": 5.13,
+   "parcelas": 4,
+   "esperado": {
+    "parcela": "1561.1209650787748272003676164170794207222292365848",
+    "somaParcelas": "6244.4838603150993088014704656683176828889169463392",
+    "juros": "1481.8138603150993088014704656683176828889169463392",
+    "totalPago": "7088.9738603150993088014704656683176828889169463392",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 3616.43,
+   "pagamentoMinimo": 1254.11,
+   "taxaRotativoPercentual": 13.18,
+   "taxaParcelamentoPercentual": 4.11,
+   "parcelas": 17,
+   "esperado": {
+    "parcela": "221.65101232011170107400690226749945389000110377466",
+    "somaParcelas": "3768.0672094418989182581173385474907161300187641692",
+    "juros": "1405.7472094418989182581173385474907161300187641692",
+    "totalPago": "5022.1772094418989182581173385474907161300187641692",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 1352.17,
+   "pagamentoMinimo": 415.9,
+   "taxaRotativoPercentual": 14.63,
+   "taxaParcelamentoPercentual": 6.63,
+   "parcelas": 16,
+   "esperado": {
+    "parcela": "110.84185657237872816744554406037358008352313022008",
+    "somaParcelas": "1773.4697051580596506791287049659772813363700835213",
+    "juros": "837.1997051580596506791287049659772813363700835213",
+    "totalPago": "2189.3697051580596506791287049659772813363700835213",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 8283.89,
+   "pagamentoMinimo": 1971.96,
+   "taxaRotativoPercentual": 8.55,
+   "taxaParcelamentoPercentual": 8.82,
+   "parcelas": 17,
+   "esperado": {
+    "parcela": "742.58",
+    "somaParcelas": "12623.86",
+    "juros": "6311.93",
+    "totalPago": "14595.82",
+    "tetoAplicado": true
+   }
+  },
+  {
+   "valorFatura": 7068.26,
+   "pagamentoMinimo": 1456.92,
+   "taxaRotativoPercentual": 13.3,
+   "taxaParcelamentoPercentual": 2.76,
+   "parcelas": 15,
+   "esperado": {
+    "parcela": "523.35643875373496963663457064548244079119142139763",
+    "somaParcelas": "7850.3465813060245445495185596822366118678713209644",
+    "juros": "2239.0065813060245445495185596822366118678713209644",
+    "totalPago": "9307.2665813060245445495185596822366118678713209644",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 4704.57,
+   "pagamentoMinimo": 1094.68,
+   "taxaRotativoPercentual": 15.26,
+   "taxaParcelamentoPercentual": 6.93,
+   "parcelas": 17,
+   "esperado": {
+    "parcela": "424.10265287378416902502843657256069045834146190252",
+    "somaParcelas": "7209.7450988543308734254834217335317377918048523428",
+    "juros": "3599.8550988543308734254834217335317377918048523428",
+    "totalPago": "8304.4250988543308734254834217335317377918048523428",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 3806.7,
+   "pagamentoMinimo": 649.79,
+   "taxaRotativoPercentual": 14.45,
+   "taxaParcelamentoPercentual": 3.15,
+   "parcelas": 24,
+   "esperado": {
+    "parcela": "216.80525224748650354266586611513132751480170233002",
+    "somaParcelas": "5203.3260539396760850239807867631518603552408559205",
+    "juros": "2046.4160539396760850239807867631518603552408559205",
+    "totalPago": "5853.1160539396760850239807867631518603552408559205",
+    "tetoAplicado": false
+   }
+  },
+  {
+   "valorFatura": 8301.75,
+   "pagamentoMinimo": 3350.01,
+   "taxaRotativoPercentual": 10.8,
+   "taxaParcelamentoPercentual": 7.74,
+   "parcelas": 20,
+   "esperado": {
+    "parcela": "495.174",
+    "somaParcelas": "9903.480",
+    "juros": "4951.740",
+    "totalPago": "13253.490",
+    "tetoAplicado": true
+   }
+  }
+ ]
+}

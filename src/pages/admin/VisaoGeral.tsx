@@ -5,6 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { useMetricasPesquisa } from '@/hooks/dados/useAdmin';
 import { formatarData, formatarPercentualInteiro, formatarPontosPercentuais } from '@/lib/formatacao';
 import { percentualDeAcerto, TOTAL_PERGUNTAS } from '@/regras/pesquisa';
+import { AnaliseEstatistica } from './AnaliseEstatistica';
 
 const nota = (n: number | null) => (n === null ? '—' : `${n}/${TOTAL_PERGUNTAS} (${formatarPercentualInteiro(percentualDeAcerto(n, TOTAL_PERGUNTAS))})`);
 const data = (d: string | null) => (d ? formatarData(d) : '—');
@@ -70,6 +71,8 @@ export function VisaoGeral() {
           </div>
         )}
       </section>
+
+      <AnaliseEstatistica />
 
       <section className="space-y-2" aria-labelledby="tabela-titulo">
         <h2 id="tabela-titulo" className="font-semibold">Participantes (só pseudônimo)</h2>
