@@ -96,7 +96,7 @@ export function JurosCompostos() {
     <section className="space-y-5">
       <h1 className="text-2xl font-semibold">Juros compostos</h1>
 
-      <form onSubmit={handleSubmit(calcular)} noValidate className="space-y-4">
+      <form onSubmit={handleSubmit(calcular, () => setCalculo(null))} noValidate className="space-y-4">
         <CampoFormulario id="valorInicial" rotulo="Valor inicial (R$)" erro={errors.valorInicial?.message}>
           {(p) => (
             <Controller

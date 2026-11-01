@@ -37,7 +37,7 @@ export const roteador = createBrowserRouter([
       { path: '/trilhas/:trilha', element: provisoria('T09 Trilha') },
       { path: '/simuladores', lazy: async () => ({ Component: (await import('@/pages/jovem/Simuladores')).Simuladores }) },
       { path: '/simuladores/juros-compostos', lazy: async () => ({ Component: (await import('@/pages/jovem/JurosCompostos')).JurosCompostos }) },
-      { path: '/simuladores/cartao-de-credito', element: provisoria('T15 Fatura do cartão') },
+      { path: '/simuladores/cartao-de-credito', lazy: async () => ({ Component: (await import('@/pages/jovem/FaturaCartao')).FaturaCartao }) },
       { path: '/ranking', element: provisoria('T16 Ranking') },
       { path: '/conquistas', element: provisoria('T17 Conquistas') },
       { path: '/notificacoes', element: provisoria('T18 Notificações') },
