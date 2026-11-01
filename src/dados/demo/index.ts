@@ -7,7 +7,7 @@ import { QUESTOES } from './questoes';
 import { criarUsuarios } from './usuarios';
 
 /** Aumente quando os dados de demonstração mudarem: o banco do aparelho é recriado. */
-export const VERSAO_DADOS = 4;
+export const VERSAO_DADOS = 5;
 
 export function criarDadosDemo(agora: Date): BancoDados {
   const historico = criarHistoricoDoAlex(agora);
@@ -18,6 +18,7 @@ export function criarDadosDemo(agora: Date): BancoDados {
     pseudonimos: pesquisa.pseudonimos,
     questoes: structuredClone(QUESTOES),
     respostasQuiz: historico.respostasQuiz,
+    respostasTreino: [],
     progressos: historico.progressos,
     simulacoes: [],
     usuarioBadges: historico.usuarioBadges,

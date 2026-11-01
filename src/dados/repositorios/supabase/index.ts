@@ -10,6 +10,7 @@ import { rankingSupabase } from './ranking';
 import { sessaoSupabase } from './sessao';
 import { simulacoesSupabase } from './simulacoes';
 import { testesSupabase } from './testes';
+import { treinoSupabase } from './treino';
 import { usuarioSupabase } from './usuario';
 
 export const repositoriosSupabase: Repositorios = {
@@ -25,4 +26,5 @@ export const repositoriosSupabase: Repositorios = {
   ranking: rankingSupabase,
   demonstracao: demonstracaoSupabase,
   admin: adminSupabase,
+  treino: treinoSupabase,
 };

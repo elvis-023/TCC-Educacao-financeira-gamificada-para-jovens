@@ -1,5 +1,5 @@
 import type {
-  Notificacao, ParametroSistema, Progresso, Questao, RespostaQuiz, RespostaTeste, Simulacao, TesteDiagnostico, Usuario, UsuarioBadge,
+  Notificacao, ParametroSistema, Progresso, Questao, RespostaQuiz, RespostaTeste, RespostaTreino, Simulacao, TesteDiagnostico, Usuario, UsuarioBadge,
 } from '@/dados/tipos';
 import { criarDadosDemo, VERSAO_DADOS } from '@/dados/demo';
 import { atualizarAparelho } from '@/dados/aparelho';
@@ -13,6 +13,7 @@ export interface BancoDados {
   pseudonimos: Record<string, string>; // usuarioId → pseudônimo, separado do usuário (RNF06)
   questoes: Questao[];
   respostasQuiz: RespostaQuiz[];
+  respostasTreino: RespostaTreino[];
   progressos: Progresso[];
   simulacoes: Simulacao[];
   usuarioBadges: UsuarioBadge[];

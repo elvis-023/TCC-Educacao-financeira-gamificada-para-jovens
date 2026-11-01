@@ -16,6 +16,7 @@ import { PreTeste } from '@/pages/jovem/PreTeste';
 import { Quiz } from '@/pages/jovem/Quiz';
 import { Ranking } from '@/pages/jovem/Ranking';
 import { ResultadoQuiz } from '@/pages/jovem/ResultadoQuiz';
+import { Treino } from '@/pages/jovem/Treino';
 import { Trilha } from '@/pages/jovem/Trilha';
 import { Trilhas } from '@/pages/jovem/Trilhas';
 import { BoasVindas } from '@/pages/publico/BoasVindas';
@@ -49,6 +50,7 @@ export const roteador = createBrowserRouter([
         children: [
           { path: '/pre-teste', element: <PreTeste /> },
           { path: '/pos-teste', element: <PosTeste /> },
+          { path: '/treino', element: <Treino /> },
           { path: '/trilhas/:trilha/licoes/:licao', element: <Licao /> },
           { path: '/trilhas/:trilha/licoes/:licao/quiz', element: <Quiz /> },
           { path: '/trilhas/:trilha/licoes/:licao/resultado', element: <ResultadoQuiz /> },

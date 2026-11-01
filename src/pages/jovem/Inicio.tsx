@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { CardPosicaoRanking } from '@/components/CardPosicaoRanking';
 import { CardProximaConquista } from '@/components/CardProximaConquista';
 import { CardTesteFinal } from '@/components/CardTesteFinal';
+import { CardTreino } from '@/components/CardTreino';
 import { CartaoTrilha } from '@/components/CartaoTrilha';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -121,6 +122,9 @@ export function Inicio() {
           </Link>
         </div>
       </section>
+
+      {/* Treino: revisão repetível, separada das trilhas */}
+      <CardTreino />
 
       {/* 4. Próxima conquista (esquerda) e posição no ranking (direita) */}
       <div className="grid grid-cols-2 gap-3">

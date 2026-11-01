@@ -10,6 +10,7 @@ import { rankingLocal } from './ranking';
 import { sessaoLocal } from './sessao';
 import { simulacoesLocal } from './simulacoes';
 import { testesLocal } from './testes';
+import { treinoLocal } from './treino';
 import { usuarioLocal } from './usuario';
 
 export const repositoriosLocais: Repositorios = {
@@ -25,4 +26,5 @@ export const repositoriosLocais: Repositorios = {
   ranking: rankingLocal,
   demonstracao: demonstracaoLocal,
   admin: adminLocal,
+  treino: treinoLocal,
 };
