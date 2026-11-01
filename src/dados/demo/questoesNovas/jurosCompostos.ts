@@ -102,7 +102,7 @@ const licao2: Item[] = [
     'No cálculo com aporte no fim do mês, o último aporte entra no último dia e não rende. Cada aporte rende por menos meses que o anterior.'],
 
   ['d', `Aportando ${r(100)} por mês durante 60 meses, a 1% ao mês, o montante é ${r(montante(0, 100, 0.01, 60))}. Se o aporte passar para ${r(200)}, qual é o montante?`, r(montante(0, 200, 0.01, 60)), [r(montante(0, 100, 0.01, 60) + 6000), r(12000), r(montante(0, 100, 0.01, 60) + 10000)],
-    `O montante é proporcional ao aporte. Dobrando o aporte, o montante dobra: ${r(montante(0, 100, 0.01, 60))} × 2 = ${r(montante(0, 200, 0.01, 60))}.`],
+    `O montante é proporcional ao aporte. Dobrando o aporte, o montante dobra, de cerca de ${r(montante(0, 100, 0.01, 60))} para ${r(montante(0, 200, 0.01, 60))}.`],
   ['d', `Aportes de ${r(250)} por mês durante 48 meses, a 1% ao mês, chegam a ${r(montante(0, 250, 0.01, 48))}. Quanto são os juros?`, r(montante(0, 250, 0.01, 48) - 250 * 48), [r(12000), r(montante(0, 250, 0.01, 48)), r(montante(0, 250, 0.01, 48) / 10)],
     `Foram investidos ${r(250 * 48)}. Os juros são ${r(montante(0, 250, 0.01, 48))} − ${r(250 * 48)} = ${r(montante(0, 250, 0.01, 48) - 250 * 48)}.`],
   ['d', `Com aportes de ${r(500)} por mês, a 1% ao mês, em quantos meses completos se chega a ${r(10000)} ou mais?`, '19 meses', ['18 meses', '20 meses', '24 meses'],
@@ -111,7 +111,7 @@ const licao2: Item[] = [
     `O valor inicial rende por 24 meses, enquanto cada aporte rende por menos tempo. O valor inicial maior vence: ${r(montante(5000, 0, 0.01, 24))}.`],
   ['d', `Um aporte de ${r(100)} feito no fim do 1º mês fica rendendo até o fim do 12º mês, a 1% ao mês. Quanto ele vale no fim do 12º mês?`, r(composto(100, 0.01, 11)), [r(composto(100, 0.01, 12)), r(110), r(100)],
     `Ele rende por 11 meses (do fim do mês 1 ao fim do mês 12): ${r(100)} × 1,01¹¹ = ${r(composto(100, 0.01, 11))}.`],
-  ['d', `${r(1000)} ficam aplicados a 1% ao mês. Quanto o saldo é maior depois de 24 meses do que depois de 12 meses?`, r(composto(1000, 0.01, 24) - composto(1000, 0.01, 12)), [r(composto(1000, 0.01, 12) - 1000), r(2 * (composto(1000, 0.01, 12) - 1000)), r(269.73)],
+  ['d', `${r(1000)} ficam aplicados a 1% ao mês. Quanto o saldo é maior depois de 24 meses do que depois de 12 meses?`, r(arredondar(composto(1000, 0.01, 24)) - arredondar(composto(1000, 0.01, 12))), [r(composto(1000, 0.01, 12) - 1000), r(2 * (composto(1000, 0.01, 12) - 1000)), r(269.73)],
     `12 meses: ${r(composto(1000, 0.01, 12))}. 24 meses: ${r(composto(1000, 0.01, 24))}. A diferença é maior que os juros do primeiro ano, porque o segundo ano rende sobre um saldo maior.`],
   ['d', `Plano X: aporte de ${r(150)} por mês por 24 meses. Plano Y: ${r(100)} por mês nos primeiros 12 meses e ${r(200)} nos últimos 12. Os dois investem ${r(3600)}. A 1% ao mês, qual termina com mais?`, `X, com ${r(montante(0, 150, 0.01, 24))} contra ${r(y())}`, [`Y, com ${r(y())} contra ${r(montante(0, 150, 0.01, 24))}`, `Os dois terminam com ${r(3600)}`, 'Não dá para comparar'],
     'No plano X os aportes são iguais. No Y, os aportes maiores vêm no fim e rendem por menos tempo. Com o mesmo total investido, o dinheiro que entra mais cedo rende mais.'],
