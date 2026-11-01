@@ -37,7 +37,7 @@ export function Conquistas() {
                 <>
                   <p className="flex items-center gap-1 text-sm font-medium text-muted-foreground"><Lock aria-hidden="true" className="size-3.5" />Bloqueada</p>
                   <p className="text-sm text-muted-foreground">{b.criterioMarco}</p>
-                  <p className="text-sm font-medium tabular-nums">{textoDeProgresso(b.id, situacao)}</p>
+                  {textoDeProgresso(b.id, situacao) && <p className="text-sm font-medium tabular-nums">{textoDeProgresso(b.id, situacao)}</p>}
                 </>
               )}
             </li>

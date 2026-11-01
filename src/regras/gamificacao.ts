@@ -42,7 +42,7 @@ export function verificarConquistas(situacao: SituacaoConquistas): CodigoBadge[]
 }
 
 /** Texto de progresso de uma conquista bloqueada (PRD 2.8). */
-export function textoDeProgresso(codigo: CodigoBadge, s: SituacaoConquistas): string {
+export function textoDeProgresso(codigo: CodigoBadge, s: SituacaoConquistas): string | null {
   switch (codigo) {
     case 'primeiro_quiz':
       return '0 de 1 quiz';
@@ -51,9 +51,8 @@ export function textoDeProgresso(codigo: CodigoBadge, s: SituacaoConquistas): st
     case 'sequencia_7_dias':
       return `${Math.min(s.sequenciaDias, DIAS_PARA_SEQUENCIA)} de ${DIAS_PARA_SEQUENCIA} dias`;
     case 'gabaritou':
-      return 'Falta acertar as 3 questões de um quiz';
     case 'desafio_aceito':
-      return 'Falta chegar ao nível Difícil';
+      return null; // o critério já diz tudo
     case 'mestre_das_financas':
       return `${Math.min(s.trilhasConcluidas, TOTAL_TRILHAS_MESTRE)} de ${TOTAL_TRILHAS_MESTRE} trilhas`;
   }
@@ -64,7 +63,7 @@ export function proximaConquista(
   badges: Badge[],
   conquistadas: CodigoBadge[],
   situacao: SituacaoConquistas,
-): { badge: Badge; progresso: string } | null {
+): { badge: Badge; progresso: string | null } | null {
   const badge = [...badges].sort((a, b) => a.ordem - b.ordem).find((b) => !conquistadas.includes(b.id));
   return badge ? { badge, progresso: textoDeProgresso(badge.id, situacao) } : null;
 }

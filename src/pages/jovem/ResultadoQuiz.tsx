@@ -71,16 +71,16 @@ export function ResultadoQuiz() {
         <h1 className="text-2xl font-semibold tabular-nums">Você acertou {acertos} de 3</h1>
       </header>
 
-      <Card>
+      <Card className="fundo-hero ring-0">
         <CardContent className="space-y-3 pt-6">
-          <p className="text-3xl font-semibold text-xp tabular-nums">+{formatarXp(xp)}</p>
+          <p className="numero text-4xl font-semibold text-destaque">+{formatarXp(xp)}</p>
           <div className="flex flex-wrap items-center gap-2 text-sm">
             <span className="text-muted-foreground">Nível atual da trilha</span>
             <EtiquetaNivel nivel={nivel} />
           </div>
           <p className="flex items-center gap-1 text-sm">
-            <Flame aria-hidden="true" className="size-4 text-sequencia-icone" />
-            <span className="tabular-nums text-sequencia">{sequencia} {sequencia === 1 ? 'dia seguido' : 'dias seguidos'}</span>
+            <Flame aria-hidden="true" className="size-4 text-destaque" />
+            <span className="tabular-nums">{sequencia} {sequencia === 1 ? 'dia seguido' : 'dias seguidos'}</span>
           </p>
         </CardContent>
       </Card>

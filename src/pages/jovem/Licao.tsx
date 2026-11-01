@@ -1,5 +1,5 @@
 import { ArrowLeft, CircleCheck } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router';
 import { toast } from 'sonner';
 import { AvisoSemInternet } from '@/components/AvisoSemInternet';
@@ -9,6 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useLicoes, useTrilhas } from '@/hooks/dados/useConteudo';
 import { useConcluirLeitura, useProgressos } from '@/hooks/dados/useProgresso';
 import { useTrilhaIndisponivel } from '@/hooks/useConexao';
+import { matizDaTrilha } from '@/lib/matizTrilha';
 import { estadoDaLicao } from '@/regras/progresso';
 import { NaoEncontrada } from '@/pages/NaoEncontrada';
 import { MENSAGEM_BLOQUEIO } from './Trilha';
@@ -66,15 +67,18 @@ export function Licao() {
 
   return (
     <article className="space-y-5 pb-32">
-      <header className="space-y-3">
-        <Link to={`/trilhas/${trilha.slug}`} className="inline-flex min-h-11 items-center gap-1 text-sm text-primary">
+      <header data-flip-id={`licao-${licao.id}:linha`} style={{ '--matiz': matizDaTrilha(trilha.slug) } as CSSProperties} className="hero-trilha space-y-3 rounded-3xl p-5">
+        <Link to={`/trilhas/${trilha.slug}`} className="inline-flex min-h-11 items-center gap-1 text-sm underline-offset-4 hover:underline">
           <ArrowLeft aria-hidden="true" className="size-4" />
           Voltar à trilha
         </Link>
-        <p className="text-sm text-muted-foreground">
-          {trilha.titulo} · <span className="tabular-nums">Lição {licao.ordem} de 3</span> · <span className="tabular-nums">{licao.tempoLeituraMin} min de leitura</span>
-        </p>
-        <h1 ref={titulo} tabIndex={-1} className="text-2xl font-semibold outline-none">{licao.titulo}</h1>
+        <div className="flex items-center gap-3">
+          <span data-flip-id={`licao-${licao.id}:numero`} className="icone-hero flex size-10 shrink-0 items-center justify-center rounded-full font-heading font-semibold tabular-nums">{licao.ordem}</span>
+          <p className="text-sm opacity-90">
+            {trilha.titulo} · <span className="tabular-nums">Lição {licao.ordem} de 3</span> · <span className="tabular-nums">{licao.tempoLeituraMin} min de leitura</span>
+          </p>
+        </div>
+        <h1 ref={titulo} tabIndex={-1} className="text-2xl font-semibold leading-tight outline-none">{licao.titulo}</h1>
       </header>
 
       {licao.conteudo.map((bloco, i) => {
