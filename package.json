@@ -13,7 +13,9 @@
     "build:demo": "tsc -b && vite build --mode demo --outDir dist-demo",
     "deploy": "npm run build && wrangler deploy",
     "deploy:demo": "npm run build:demo && wrangler deploy --config wrangler.demo.jsonc",
-    "gerar:seed": "tsx scripts/gerar-seed.ts"
+    "gerar:seed": "tsx scripts/gerar-seed.ts",
+    "auditar:banco": "tsx scripts/auditar-banco.ts",
+    "conferir:calculos": "tsx scripts/conferir-calculos.ts"
   },
   "dependencies": {
     "@date-fns/tz": "1.5.0",
