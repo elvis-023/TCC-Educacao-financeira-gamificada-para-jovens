@@ -1,5 +1,5 @@
 import type {
-  Badge, ChaveParametro, LinhaExportacao, LinhaHistoricoParametro, LinhaRanking, Licao, MetricasPesquisa, Notificacao, Papel, PerguntaPublica, Progresso, QuestaoAdmin, QuestaoEditavel, QuestaoPublica, Quiz, RespostaQuiz, ResultadoResposta, ResumoTeste, Sessao, Simulacao, TipoTeste, Trilha, Usuario, UsuarioBadge,
+  Badge, ChaveParametro, EstadoTreino, LinhaExportacao, LinhaHistoricoParametro, LinhaRanking, Licao, MetricasPesquisa, Notificacao, Papel, PerguntaPublica, Progresso, QuestaoAdmin, QuestaoEditavel, QuestaoPublica, QuestaoTreino, Quiz, RespostaQuiz, ResultadoResposta, ResultadoTreino, ResumoTeste, Sessao, Simulacao, TipoTeste, Trilha, Usuario, UsuarioBadge,
 } from '@/dados/tipos';
 
 export interface DadosCadastro { nome: string; email: string; senha: string; tcleVersao: string }
@@ -70,6 +70,13 @@ export interface RepositorioAdmin {
   salvarParametros(valores: Record<ChaveParametro, number>): Promise<void>;
 }
 
+/** Modo Treino: questões das lições cujo quiz já foi concluído, repetíveis, com XP reduzido e teto por dia. */
+export interface RepositorioTreino {
+  estado(): Promise<EstadoTreino>;
+  proximaQuestao(jaVistas: string[]): Promise<QuestaoTreino | null>;
+  responder(questaoId: string, alternativa: number): Promise<ResultadoTreino>;
+}
+
 export interface RepositorioDemonstracao {
   disponivel: boolean; // false com a base de dados real
   limiteDeInatividade(): Promise<number>;
@@ -91,4 +98,5 @@ export interface Repositorios {
   ranking: RepositorioRanking;
   demonstracao: RepositorioDemonstracao;
   admin: RepositorioAdmin;
+  treino: RepositorioTreino;
 }

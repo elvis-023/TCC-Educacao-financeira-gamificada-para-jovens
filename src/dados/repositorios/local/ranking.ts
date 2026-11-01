@@ -14,7 +14,7 @@ export const rankingLocal: RepositorioRanking = {
       xp: periodo === 'geral'
         ? u.xpTotal
         // Os 11 fictícios têm o XP da semana fixo; o jovem real soma as respostas da semana.
-        : u.xpSemanaFicticio ?? xpDaSemana(banco.respostasQuiz.filter((r) => r.usuarioId === u.id), agora()),
+        : u.xpSemanaFicticio ?? xpDaSemana([...banco.respostasQuiz, ...banco.respostasTreino].filter((r) => r.usuarioId === u.id), agora()),
     }));
     return responder(montarRanking(entradas, usuarioDaSessao()));
   },

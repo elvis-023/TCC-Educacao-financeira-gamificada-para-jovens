@@ -95,6 +95,11 @@ export interface ResultadoResposta {
   trilhaConcluida: boolean;
   conquistasNovas: CodigoBadge[];
 }
+/** Modo Treino: resposta guardada à parte das respostas do quiz, para não mexer no nível adaptativo nem na pesquisa. */
+export interface RespostaTreino { id: string; usuarioId: string; questaoId: string; acertou: boolean; xpGanho: number; respondidaEm: string }
+export interface QuestaoTreino { id: string; enunciado: string; alternativas: string[]; nivelDificuldade: Nivel }
+export interface ResultadoTreino { acertou: boolean; respostaCorreta: number; explicacao: string; xpGanho: number; xpHoje: number }
+export interface EstadoTreino { questoesDisponiveis: number; xpHoje: number }
 export interface Progresso {
   id: string;
   usuarioId: string;
