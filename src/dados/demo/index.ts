@@ -7,7 +7,7 @@ import { QUESTOES } from './questoes';
 import { criarUsuarios } from './usuarios';
 
 /** Aumente quando os dados de demonstração mudarem: o banco do aparelho é recriado. */
-export const VERSAO_DADOS = 2;
+export const VERSAO_DADOS = 4;
 
 export function criarDadosDemo(agora: Date): BancoDados {
   const historico = criarHistoricoDoAlex(agora);
