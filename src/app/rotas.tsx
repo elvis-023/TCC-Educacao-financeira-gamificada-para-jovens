@@ -3,6 +3,7 @@ import { LayoutAdmin } from '@/layouts/LayoutAdmin';
 import { LayoutFoco } from '@/layouts/LayoutFoco';
 import { LayoutJovem } from '@/layouts/LayoutJovem';
 import { LayoutPublico } from '@/layouts/LayoutPublico';
+import { Inicio } from '@/pages/jovem/Inicio';
 import { NaoEncontrada } from '@/pages/NaoEncontrada';
 import { TelaProvisoria } from '@/pages/TelaProvisoria';
 
@@ -31,7 +32,7 @@ export const roteador = createBrowserRouter([
   {
     element: <LayoutJovem />,
     children: [
-      { path: '/inicio', element: provisoria('T07 Início') },
+      { path: '/inicio', element: <Inicio /> },
       { path: '/trilhas', element: provisoria('T08 Trilhas') },
       { path: '/trilhas/:trilha', element: provisoria('T09 Trilha') },
       { path: '/simuladores', element: provisoria('T13 Simuladores') },
