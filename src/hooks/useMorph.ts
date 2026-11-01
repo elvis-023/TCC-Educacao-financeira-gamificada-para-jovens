@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, type DependencyList, type RefObject } from 'react';
-import { Flip, reduzMovimento, type EstadoFlip } from '@/lib/animacao';
+import { obterFlip, reduzMovimento, type EstadoFlip } from '@/lib/animacao';
 
 /**
  * Layout animation (GSAP Flip): sempre que `dependencias` mudam, os filhos com `data-flip-id` do container
@@ -9,7 +9,8 @@ export function useMorph(container: RefObject<HTMLElement | null>, dependencias:
   const anterior = useRef<EstadoFlip | null>(null);
   useLayoutEffect(() => {
     const raiz = container.current;
-    if (!raiz) return;
+    const Flip = obterFlip();
+    if (!raiz || !Flip) return;
     const alvos = raiz.querySelectorAll('[data-flip-id]');
     const guardar = () => { anterior.current = Flip.getState(raiz.querySelectorAll('[data-flip-id]')); };
     if (anterior.current && !reduzMovimento()) {

@@ -92,7 +92,7 @@
     --hero-foreground: oklch(0.98 0.01 265);
     --destaque: oklch(0.86 0.17 90);
     --destaque-foreground: oklch(0.25 0.08 265);
-    --acerto: oklch(0.527 0.154 150.069);
+    --acerto: oklch(0.46 0.13 150);
     --acerto-fundo: oklch(0.982 0.018 155.826);
     --erro: oklch(0.505 0.213 27.518);
     --erro-fundo: oklch(0.971 0.013 17.38);

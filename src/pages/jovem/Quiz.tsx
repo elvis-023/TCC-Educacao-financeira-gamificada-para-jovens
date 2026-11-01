@@ -1,4 +1,4 @@
-import { gsap, reduzMovimento } from '@/lib/animacao';
+import { entradaDasAlternativas } from '@/lib/animacao';
 import { CircleCheck, CircleX, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router';
@@ -112,8 +112,7 @@ function QuizAberto({ trilha, licao, estadoNaAbertura }: { trilha: TrilhaTipo; l
   // Cada questão nova entra com as alternativas em sequência (GSAP); o resto da tela fica parado.
   const questaoId = questao?.id;
   useEffect(() => {
-    if (!questaoId || reduzMovimento()) return;
-    gsap.fromTo('[data-alternativa]', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.07, ease: 'power2.out', clearProps: 'opacity,transform' });
+    if (questaoId) entradaDasAlternativas();
   }, [questaoId]);
 
   // Teclado (PRD 5.6): 1 a 4 escolhem; Enter confirma e, depois do feedback, avança.
