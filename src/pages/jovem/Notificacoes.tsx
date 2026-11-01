@@ -47,7 +47,7 @@ export function Notificacoes() {
                   <button
                     type="button"
                     onClick={() => abrir(n)}
-                    className={`flex min-h-16 w-full items-start gap-3 rounded-xl border p-3 text-left focus-visible:outline-2 focus-visible:outline-ring ${n.lida ? '' : 'border-primary/40 bg-primary/5'}`}
+                    className={`flex min-h-16 w-full items-start gap-3 rounded-2xl p-3 text-left shadow-xs ring-1 focus-visible:outline-2 focus-visible:outline-ring ${n.lida ? 'bg-card ring-foreground/10' : 'bg-primary/10 ring-primary/40'}`}
                   >
                     <Icone aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-primary" />
                     <span className="min-w-0 flex-1">

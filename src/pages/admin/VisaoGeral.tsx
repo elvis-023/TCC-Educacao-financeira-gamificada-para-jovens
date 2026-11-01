@@ -35,13 +35,13 @@ export function VisaoGeral() {
         {cartoes.map((c) => (
           <Card key={c.rotulo}>
             <CardHeader><CardTitle className="text-sm font-medium text-muted-foreground">{c.rotulo}</CardTitle></CardHeader>
-            <CardContent><p className="text-3xl font-semibold tabular-nums">{c.valor}</p></CardContent>
+            <CardContent><p className="numero text-3xl font-semibold">{c.valor}</p></CardContent>
           </Card>
         ))}
         <Card>
           <CardHeader><CardTitle className="text-sm font-medium text-muted-foreground">Ganho observado médio</CardTitle></CardHeader>
           <CardContent>
-            <p className="text-3xl font-semibold tabular-nums">{m.ganhoMedio === null ? '—' : formatarPontosPercentuais(m.ganhoMedio, 1)}</p>
+            <p className="numero text-3xl font-semibold">{m.ganhoMedio === null ? '—' : formatarPontosPercentuais(m.ganhoMedio, 1)}</p>
             {m.ganhoMedio !== null && <p className="text-sm text-muted-foreground tabular-nums">n = {m.nPares}</p>}
           </CardContent>
         </Card>

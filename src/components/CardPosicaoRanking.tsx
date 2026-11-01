@@ -8,7 +8,7 @@ import { formatarXp } from '@/lib/formatacao';
 /** Metade direita do 4º card do Início (PRD T07): a posição do jovem no ranking geral. */
 export function CardPosicaoRanking() {
   const { data, isPending } = useRanking('geral');
-  if (isPending) return <Skeleton className="h-36 w-full rounded-xl" />;
+  if (isPending) return <Skeleton className="h-36 w-full rounded-3xl" />;
 
   const minha = data?.find((l) => l.ehVoce);
   return (

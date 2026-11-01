@@ -11,7 +11,7 @@ import { proximaConquista } from '@/regras/gamificacao';
 export function CardProximaConquista() {
   const badges = useBadges();
   const { carregando, situacao, conquistadas } = useSituacaoConquistas();
-  if (carregando || badges.isPending || !situacao) return <Skeleton className="h-36 w-full rounded-xl" />;
+  if (carregando || badges.isPending || !situacao) return <Skeleton className="h-36 w-full rounded-3xl" />;
 
   const proxima = proximaConquista(badges.data ?? [], conquistadas, situacao);
   return (

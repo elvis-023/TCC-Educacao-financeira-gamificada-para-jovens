@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import type { z } from 'zod';
+import { CabecalhoAcesso } from '@/components/CabecalhoAcesso';
 import { CampoFormulario } from '@/components/CampoFormulario';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -23,7 +24,7 @@ export function EsqueciSenha() {
 
   return (
     <main className="space-y-5 py-6">
-      <h1 className="text-2xl font-semibold">Esqueci minha senha</h1>
+      <CabecalhoAcesso titulo="Esqueci minha senha" texto="Informe o e-mail da conta e enviamos o link para criar uma nova senha." />
       {enviado ? (
         <p role="status" className="rounded-lg border bg-muted/50 p-3">
           Se houver uma conta com este e-mail, você vai receber um link para criar uma nova senha.
