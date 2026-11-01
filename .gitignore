@@ -29,6 +29,7 @@ Thumbs.db
 # Arquivos que ficam só nesta máquina
 CLAUDE.md
 .claude/
+.mcp.json
 /Prompt-PRD-Software-Funcionando-02-11-2026.txt
 /Entregas/
 /feedbackProfessor/
