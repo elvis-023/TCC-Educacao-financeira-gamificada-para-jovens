@@ -7,7 +7,10 @@ import { LayoutPublico } from '@/layouts/LayoutPublico';
 import { NaoEncontrada } from '@/pages/NaoEncontrada';
 import { TelaProvisoria } from '@/pages/TelaProvisoria';
 import { Inicio } from '@/pages/jovem/Inicio';
+import { Licao } from '@/pages/jovem/Licao';
 import { Perfil } from '@/pages/jovem/Perfil';
+import { Trilha } from '@/pages/jovem/Trilha';
+import { Trilhas } from '@/pages/jovem/Trilhas';
 import { BoasVindas } from '@/pages/publico/BoasVindas';
 import { Cadastro } from '@/pages/publico/Cadastro';
 import { EsqueciSenha } from '@/pages/publico/EsqueciSenha';
@@ -38,7 +41,7 @@ export const roteador = createBrowserRouter([
         children: [
           { path: '/pre-teste', element: provisoria('T05 Pré-teste') },
           { path: '/pos-teste', element: provisoria('T06 Pós-teste') },
-          { path: '/trilhas/:trilha/licoes/:licao', element: provisoria('T10 Lição') },
+          { path: '/trilhas/:trilha/licoes/:licao', element: <Licao /> },
           { path: '/trilhas/:trilha/licoes/:licao/quiz', element: provisoria('T11 Quiz') },
           { path: '/trilhas/:trilha/licoes/:licao/resultado', element: provisoria('T12 Resultado do quiz') },
         ],
@@ -47,8 +50,8 @@ export const roteador = createBrowserRouter([
         element: <LayoutJovem />,
         children: [
           { path: '/inicio', element: <Inicio /> },
-          { path: '/trilhas', element: provisoria('T08 Trilhas') },
-          { path: '/trilhas/:trilha', element: provisoria('T09 Trilha') },
+          { path: '/trilhas', element: <Trilhas /> },
+          { path: '/trilhas/:trilha', element: <Trilha /> },
           { path: '/simuladores', lazy: async () => ({ Component: (await import('@/pages/jovem/Simuladores')).Simuladores }) },
           { path: '/simuladores/juros-compostos', lazy: async () => ({ Component: (await import('@/pages/jovem/JurosCompostos')).JurosCompostos }) },
           { path: '/simuladores/cartao-de-credito', lazy: async () => ({ Component: (await import('@/pages/jovem/FaturaCartao')).FaturaCartao }) },

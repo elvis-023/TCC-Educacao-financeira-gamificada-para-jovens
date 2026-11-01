@@ -1,4 +1,4 @@
-import type { Badge, Licao, Papel, Quiz, ResumoTeste, Sessao, Simulacao, Trilha } from '@/dados/tipos';
+import type { Badge, Licao, Papel, Progresso, Quiz, RespostaQuiz, ResumoTeste, Sessao, Simulacao, Trilha } from '@/dados/tipos';
 
 export interface DadosCadastro { nome: string; email: string; senha: string; tcleVersao: string }
 
@@ -18,6 +18,11 @@ export interface RepositorioConteudo {
   listarQuizzes(): Promise<Quiz[]>;
   listarBadges(): Promise<Badge[]>;
 }
+export interface RepositorioProgresso {
+  meusProgressos(): Promise<Progresso[]>;
+  minhasRespostas(): Promise<RespostaQuiz[]>;
+  concluirLeitura(licaoId: string): Promise<void>;
+}
 export interface RepositorioTestes {
   meusTestes(): Promise<ResumoTeste[]>;
 }
@@ -29,6 +34,7 @@ export interface RepositorioSimulacoes {
 export interface Repositorios {
   sessao: RepositorioSessao;
   conteudo: RepositorioConteudo;
+  progresso: RepositorioProgresso;
   testes: RepositorioTestes;
   simulacoes: RepositorioSimulacoes;
 }
