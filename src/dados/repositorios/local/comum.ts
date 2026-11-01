@@ -1,6 +1,8 @@
 import { lerAparelho } from '@/dados/aparelho';
 import type { BancoDados } from '@/dados/bancoLocal';
 import type { ChaveParametro } from '@/dados/tipos';
+import { diaNoFuso } from '@/lib/fuso';
+import { atualizarSequencia } from '@/regras/sequencia';
 
 export const LATENCIA_MS = import.meta.env.MODE === 'test' ? 0 : 300;
 
@@ -19,9 +21,12 @@ export function usuarioDaSessao(): string {
 
 export const estaOnline = () => (typeof navigator === 'undefined' ? true : navigator.onLine);
 
-/** Lição ou quiz concluído: atualiza a última atividade (o passo 8 acrescenta a sequência). */
+/** Lição ou quiz concluído: atualiza a sequência (dia no fuso de São Paulo, RN04) e a última atividade. */
 export function registrarAtividade(banco: BancoDados, usuarioId: string, instante: Date): void {
   const usuario = banco.usuarios.find((u) => u.id === usuarioId)!;
+  const sequencia = atualizarSequencia(usuario.diasStreak, usuario.ultimoDiaUso, diaNoFuso(instante));
+  usuario.diasStreak = sequencia.diasStreak;
+  usuario.ultimoDiaUso = sequencia.ultimoDiaUso;
   usuario.ultimaAtividadeEm = instante.toISOString();
 }
 
