@@ -172,6 +172,10 @@
     font-family: var(--font-heading);
     letter-spacing: -0.01em;
     }
+  /* O título recebe o foco por código ao trocar de tela (leitor de tela); não é um controle, então sem contorno. */
+  :is(h1, h2)[tabindex="-1"]:focus {
+    outline: none;
+    }
 }
 
 /* Cartão de destaque: tinta azul com um brilho no canto, como o cartão de saldo das referências. */
