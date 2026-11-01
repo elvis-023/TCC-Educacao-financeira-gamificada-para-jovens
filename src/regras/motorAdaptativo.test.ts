@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { criarDadosDemo } from '@/dados/demo';
-import { ESTRUTURA_QUESTOES } from '@/dados/demo/estruturaQuestoes';
+import { ESTRUTURA_QUESTOES_BASE as ESTRUTURA_QUESTOES } from '@/dados/demo/estruturaQuestoes';
 import type { Nivel } from '@/dados/tipos';
 import { xpPorResposta } from './gamificacao';
 import {
