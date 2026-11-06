@@ -2,6 +2,8 @@
 
 TCC de Engenharia de Software da Universidade São Judas Tadeu — **Grupo 19** (orientador: Prof. Nelson Aguiar).
 
+**Aplicativo publicado:** https://educacao-financeira-gamificada.tcc-grupo19.workers.dev/
+
 Aplicativo web **mobile-first** de educação financeira para jovens adultos (18 anos ou mais):
 
 - **Trilhas** curtas de conteúdo, com quiz ao fim de cada lição.
